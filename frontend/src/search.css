@@ -1,0 +1,152 @@
+@import url("index.css");
+
+.search{
+    float: left;
+    margin-top: 175px;
+    width: 270px;
+    height: 260px;
+    margin-left: 10px;
+    border: 1px solid #d6d6d6;
+    box-shadow: 10px 5px 5px rgb(209, 209, 209);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.wr-search{
+    display: flex;
+}
+  
+
+.title-parameters{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.search-button{
+    background-color: rgb(134, 149, 168) !important;; 
+    border: none !important;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+ input{
+    width: 110px;
+    border-radius: 5px;
+    border: 1px solid;
+    border-color: #b3b4b4;
+}
+
+.rooms{
+    margin-top: 100px;
+    margin-left: 100px;
+    float: left;
+}
+
+.room-in-search{
+    height: 320px;
+    width: 810px;
+    border: 1px solid #ebebeb;
+    box-shadow: 10px 5px 5px rgb(209, 209, 209);
+    margin-bottom: 10px;
+}
+
+.room-photos{
+    position: relative;
+    width: 400px;
+    height: 305px;
+    float: left;
+}
+
+.bg-image{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 0px  ;
+    height: 80px;
+    opacity: 70%;
+    width: 400px;
+    position: absolute;
+    bottom: 0;
+    background-color: rgb(34, 33, 36);
+}
+
+.room-other-photo{
+    position: absolute;
+    bottom: 0;
+    margin-left: 20px;
+}
+
+
+.rooms-image{
+    margin-right: 10px;
+}
+
+.rooms-image-active{
+    margin-right: 10px;
+    border-width: 5px !important;
+    border-style: solid !important;
+    border-color: rgb(75, 194, 194) !important;
+}
+
+.room-main-photo{
+    position: absolute;
+   width: 400px;
+   height: 300px;
+   margin-top: 10px;
+   margin-left: 10px;
+}
+
+.room-info{
+    margin-left: 20px;
+    width: 380px;
+    float: left;
+    height: 300px;
+}
+
+.room-title{ 
+    margin-left: 20px;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.room-price{
+
+    margin-top: 40px;
+}
+
+.p-datepicker table td{
+    padding: 0;
+    font-size: 13px;
+}
+.p-datepicker-header{
+    padding: 0;
+    font-size: 15px;
+}
+
+.button-more{
+    background-color: rgb(91, 129, 104) !important;; 
+    border: none !important;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.search-title{
+    text-align: center;
+    align-self: center;
+    margin-bottom: 30px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-line{
+    width: 200px;
+    height: 25px;
+}
+
+.p-button {
+    background: #7c8789;
+    border:none;
+}
