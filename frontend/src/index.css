@@ -64,16 +64,17 @@ body {
 
 .buttonOnMainPage{ 
   border-radius: 7px;
+  transition: transform .2s; /* Animation */
   font-size: 33px;
   color: rgba(240, 248, 255, 0.815);
   border-color: aliceblue;
   background-color: #ffffff00; 
  }
 
- .buttonOnMainPage:hover{
-  transform: scale(1.2);
-  transition: 1s; 
+ .buttonOnMainPage:hover {
+  transform: scale(1.2); /* (150% зум - Примечание: если масштаб слишком велик, он будет выходить за пределы видового экрана) */
 }
+ 
 
 .textOnMainPageSRT1{
   font-size: 30px;
@@ -198,10 +199,15 @@ body {
   border-radius: 7px;
   font-size: 24px;
   color: rgba(0, 0, 0, 0.815);
+  background-color: #ffffff !important;
   border-radius: 0%;
   border-width: 1px;
-  border-color: rgb(0, 0, 0);
-  background-color: #ffffff00; 
+  border-color: rgba(0, 0, 0, 0.116);
+  background-color: #ffffff21; 
+}
+
+.btn-to-service:hover{
+  background-color: #d2d4d8 !important;
 }
 
 .services-discribe{
@@ -210,10 +216,20 @@ body {
 
 .services-picture{
   outline: 1px solid white;
-    outline-offset: -10px;
+  outline-offset: -10px;
   height: 300px;
   width: 590px;
+  opacity: 0;
+  animation: ani 2.5s forwards;
+}
+
+.services-picture::after{
   
+}
+
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
 
 .services-area{
@@ -222,12 +238,22 @@ body {
 
 .sevices-title{
   font-size: 24px;
+  width: 100%;
   margin-bottom: 20px;
+}
+
+.services-bg{
+  margin-top: 80px;
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  background-color: #e7eaebbb;
 }
 
 .service-more-btn{
   float: right;
-  margin: 10px 10px 10px 10px;
+  margin-bottom: 20px;
   border-radius: 7px;
   font-size: 24px;
   color: rgba(255, 255, 255, 0.815);

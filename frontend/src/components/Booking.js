@@ -46,7 +46,7 @@ const Booking =  ({showingEnd}) => {
     <div className='admin-tables'>
        <div className='container mt-5'>
         <h1 className='admin-table-title'>{showingEnd ? 'Проживание подходит к концу' : 'Бронирование домов'} </h1>
-        <div> {!showingEnd ? <Button  onClick={() => setCreateBooking(true)}>Создать booking</Button> : <></>} </div>
+        <div> {!showingEnd ? <Button  onClick={() => setCreateBooking(true)}>Создать бронь</Button> : <></>} </div>
         
             <table class="table">
                 <thead>
