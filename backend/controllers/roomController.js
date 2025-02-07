@@ -2,6 +2,8 @@ const uuid = require('uuid')
 const {Room, Booking, Image, Guest, Payment} = require('../models/models')
 const { Op } = require('sequelize')
 const Sequelize = require('sequelize')
+const moment = require("moment");
+
 class RoomConroller{
 
     async getAllRooms(req, res){
@@ -60,6 +62,26 @@ class RoomConroller{
          return  res.json(booking)  
     }catch(e){console.log(e)}          
     }
+
+    async getEndingBooking(req, res){
+        try {
+        const daysForCheck = 7;
+        const now = moment().format("YYYY-MM-DD")
+        const startDate = moment().add(daysForCheck, "days").format("YYYY-MM-DD");
+         const booking =  await Booking.findAll({
+             where: {
+                    [Op.and]: [
+                        {checkOut: { [Op.gte]: now }},
+                        {checkOut: { [Op.lte]: startDate}}
+                    ]
+                 },
+                 include: [{model: Guest, as: "guest"}, {model: Room, as: "room"}]
+         })
+         //{include: [{model: Guest, as: "guest"}, {model: Room, as: "room"}]}
+         console.log(booking)
+          return  res.json(booking)  
+     }catch(e){console.log(e)}          
+     }
  
 }
 module.exports = new RoomConroller()

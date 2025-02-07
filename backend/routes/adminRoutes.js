@@ -5,5 +5,7 @@ const adminController = require('../controllers/adminController');
 router.post('/booking/create', adminController.createBooking)
 router.post('/payment/create', adminController.createPayment)
 
+router.post('/login', adminController.login)
+router.post('/reg', adminController.registration)
 
 module.exports = router
