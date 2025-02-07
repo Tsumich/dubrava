@@ -223,9 +223,6 @@ body {
   animation: ani 2.5s forwards;
 }
 
-.services-picture::after{
-  
-}
 
 @keyframes ani {
   0% {opacity: 0;}
