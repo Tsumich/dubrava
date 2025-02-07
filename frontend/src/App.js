@@ -63,8 +63,8 @@ const App = observer(() => {
         />
         
     </Routes>
-   {<Footer/>
-   }
+   <Footer/>
+   
     </BrowserRouter>
     </PrimeReactProvider>
   )

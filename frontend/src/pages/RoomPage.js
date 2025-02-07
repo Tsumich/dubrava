@@ -41,12 +41,12 @@ const RoomPage =  () => {
                 <div className='room-page-line'></div>
             
             <div className='room-page-bg-image'>
-                <img src={`http://localhost:9000/${room.image[2].image}`}/>    
+                <img src={`http://localhost:9000/${room.image[0].image}`}/>    
             </div>
 
             <div className='room-info-container'>
                 <div className='room-page-image-info'>
-                    <img src={`http://localhost:9000/${room.image[2].image}`}/>
+                    <img src={`http://localhost:9000/${room.image[0].image}`}/>
                 </div>
 
                 <div className='room-page-info' style={{marginBottom:'20px'}}>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Room from './Room';
 import line from '../static/line.png'
-
+import RoomSkelet from './RoomSkelet'
 
 const Rooms = ({rooms}) => {
     const [activePhotos, setActivePhotos] = []

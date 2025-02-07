@@ -14,8 +14,14 @@ export const searchRooms = async (fields) => {
 
 export const getBooking = async (start, end) => {
     const {data} = await instance.get('api/rooms/booking', {params: {
-            start, end }}
-    )
+        start, end }})
+    
+    return data
+}
+
+
+export const getEnd = async (start, end) => {
+    const {data} = await instance.get('api/rooms/end')
     return data
 }
 

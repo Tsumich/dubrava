@@ -1,10 +1,12 @@
 import React from 'react';
 import { observer} from 'mobx-react-lite';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom'
 import car2 from '../static/car2.jpg'
 import car4 from '../static/car4.jpg'
 import Bot from '../components/Bot';
+import pic1 from '../static/pic111.jpg'
+
 const MainPage = observer(() => {
     const history = useNavigate()
     return (
@@ -22,8 +24,7 @@ const MainPage = observer(() => {
           <div className="container-for-line"> <div className='line'></div></div>
 
 
-        <div className='wr'>
-        <div className='container-center'>
+         <div className='container-center'>
 
             <div className='container-row'>
             <div className='container-carousel' >
@@ -62,19 +63,35 @@ const MainPage = observer(() => {
                     Уникальное расположение вдали от города, стильный интерьер и все удобства 
                     дают возможность расслабиться и получить качественный отдых
                 </div>
+                    <button onClick={() => history('/search')} className='caurosel-btn' >{ ">> "}перейти к просмотру домов { "<<"}</button>
             </div>
             </div>
         </div>
-
+    
         <div className="container-for-line"> <div className='line'></div></div>
-            <div className='services-container'>
-                <div className='sevices-descroption'></div>
+        <div className='services-container'>
+                <div className='services-wr'>
+                    <div className='sevices-title'>Почему стоит к нам приехать?</div>
+                    <div className='services-area'>
+                         
+                    <div className='services-menu'>
+                        <button className='btn-to-service'>ресторан</button>
+                        <button className='btn-to-service'>спа-салон</button>
+                        <button className='btn-to-service'>спорт зал</button>
+                    </div>
+                    <div className='services-discribe'>
+                      <Image className='services-picture' src={pic1}></Image>
+                      <div>наш основной ресторан, который работает для вас круглосуточно! Здесь вы сможете насладиться уютной и спокойной обстановкой, а также попробовать вкуснейшие блюда нашей кухни.</div>
+                        <button className='service-more-btn'>Подробнее</button>
+                    </div>
+                    
+                </div>
+                </div>
                 <div className='sevices-image-restorant'></div>
                 <div className='sevices-image-gym'></div>
         </div>
 
-        </div>
-
+ 
         <Bot/>
         </div>
     );

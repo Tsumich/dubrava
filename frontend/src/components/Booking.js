@@ -1,13 +1,13 @@
 import React , {useMemo, useState, useEffect} from 'react';
 import { useTable } from 'react-table'
-import { getBooking } from '../axios';
+import { getBooking, getEnd } from '../axios';
 import Note from './Note';
 import Pagination from './Pagination';
 import { Button } from 'react-bootstrap';
 import CreateBooking from './modal/CreateBooking';
 
 
-const Booking =  () => {
+const Booking =  ({showingEnd}) => {
     const [bookings, setBookings] = useState([])
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
@@ -18,14 +18,22 @@ const Booking =  () => {
     useEffect(() => {
         const getData = async() => {
             setLoading(true)
-            await  getBooking().then((data)=> {
+            !showingEnd ? await getBooking().then((data)=> {
+                console.log(data)
                 setBookings(data)
             setLoading(false)
-            })    
+            }) : await getEnd().then((data)=> {
+                console.log(data)
+                setBookings(data)
+            setLoading(false)
+            })
+
+
         }
         getData()
-    }, []);
+    }, []) 
 
+    
     let lastBookingIndex = currentPage * bookingPerPage
     const firstBookingIndex = lastBookingIndex - bookingPerPage
     const currentBooking = bookings.slice(firstBookingIndex, lastBookingIndex)
@@ -37,8 +45,8 @@ const Booking =  () => {
     return (
     <div className='admin-tables'>
        <div className='container mt-5'>
-        <h1 className='text-primary'>Бронирования</h1>
-        <div><Button  onClick={() => setCreateBooking(true)}>Создать booking</Button></div>
+        <h1 className='admin-table-title'>{showingEnd ? 'Проживание подходит к концу' : 'Бронирование домов'} </h1>
+        <div> {!showingEnd ? <Button  onClick={() => setCreateBooking(true)}>Создать booking</Button> : <></>} </div>
         
             <table class="table">
                 <thead>
@@ -52,7 +60,7 @@ const Booking =  () => {
                 <tbody>
                     {currentBooking.map(booking => {
                     return(
-                        <Note booking={booking} loading={loading}/>
+                        <Note booking={booking} loading={loading} checkPaid={showingEnd}/>
                     ) 
                     })}
                         

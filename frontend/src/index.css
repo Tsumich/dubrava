@@ -93,8 +93,8 @@ body {
 }
 
 .line{
-  height: 2px;
-  width: 700px;
+  height: 1px;
+  width: 70%;
   margin: auto; 
   background-color: #743c3c;
 }
@@ -105,9 +105,15 @@ body {
   width: 70%;
   height: 470px;
 }
+ 
+.caurosel-btn{
+   margin: 10px 10px 10px 10px;
+   font-size: 18px;
 
-.wr{
-  display: block;
+  color: #ffffffd0;
+  border-radius: 5px;
+  border-color: #798A77;
+  background-color: #798A77; 
 }
 
 .container-row{
@@ -139,11 +145,95 @@ body {
   border-color: #cfcece;
   border-radius: 2%;
 }
+.react-chatbot-kit-chat-header{
+  visibility: hidden;
+  font-size: 1px !important;
+ }
+
+.react-chatbot-kit-chat-header::before{
+   background-clip: content-box;
+  font-size: 14px !important;
+  visibility: visible;
+  content: 'Задайте вопрос боту';
+}
+
 
 .footer{
-  
   display: flex;
-  height: 100px;
+  height: 180px;
   width: 100%;
-  background-color: #9faaa6;
+  color: #fff;
+  background-color: #282e2c;
 }
+
+.footer-contacts{
+  margin: auto;
+}
+
+.footer-site-menu{
+  margin: auto;
+}
+
+.services-menu{
+  width: 100%;
+ 	display: flex;
+  margin-right: 70px;
+  margin-top: 30px;
+  flex-direction: column !important;
+
+}
+
+.services-container{
+  display:flex;
+  justify-content: center;
+}
+
+.services-area{
+  display: block;
+}
+
+.btn-to-service{
+  width: 130px;
+  margin: 10px 10px 10px 10px;
+  border-radius: 7px;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.815);
+  border-radius: 0%;
+  border-width: 1px;
+  border-color: rgb(0, 0, 0);
+  background-color: #ffffff00; 
+}
+
+.services-discribe{
+  width: 590px;
+}
+
+.services-picture{
+  outline: 1px solid white;
+    outline-offset: -10px;
+  height: 300px;
+  width: 590px;
+  
+}
+
+.services-area{
+  display: flex;
+}
+
+.sevices-title{
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.service-more-btn{
+  float: right;
+  margin: 10px 10px 10px 10px;
+  border-radius: 7px;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.815);
+  border-radius: 5%;
+  border-width: 1px;
+  border-color: #798A77;
+  background-color: #798A77; 
+}
+
