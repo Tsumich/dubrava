@@ -6,6 +6,11 @@ const instance = axios.create({
     baseURL: 'http://localhost:9000/'
 }) 
 
+instance.interceptors.request.use((config) => {
+	config.headers.Authorization = window.localStorage.getItem('token')
+	return config
+})
+
 export const searchRooms = async (fields) => {
 	//console.log(fields)
     const {data} = await instance.post('api/rooms/search/', fields)

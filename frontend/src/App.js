@@ -12,6 +12,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import RoomPage from './pages/RoomPage';
 import BookingForm from './pages/BookingForm';
 import Footer from './components/Footer';
+import { fetchAuthMe, isAuthSelector } from './redux/slicesAuth';
  
 
 
@@ -19,7 +20,12 @@ const App = observer(() => {
 
 	const dispatch = useDispatch()
   const {rooms} = useSelector(state => state.rooms)
-
+	const isAuth = useSelector(isAuthSelector)
+	console.log(isAuth)
+	React.useEffect(() => {
+		dispatch(fetchAuthMe())
+	}, [])
+	
   const isRoomLoading = rooms.status === 'loading'
 	
 	React.useEffect(() => {

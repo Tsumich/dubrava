@@ -7,7 +7,7 @@ export const fetchUserData = createAsyncThunk('/auth/fetchUserData', async(param
 })
 
 export const fetchAuthMe = createAsyncThunk('/auth/fetchAuthMe', async() => {
-	const { data } = await axios.get('/auth/me') 
+	const { data } = await axios.get('/api/auth/me') 
 	return data;
 })
 
@@ -29,43 +29,49 @@ const authSlice = createSlice({
 			state.data = null
 		}
 	},
-	extraReducers: {
-		[fetchUserData.pending]: (state) => {
+	extraReducers: (builder) => {
+		// reducers for login
+		builder.addCase(fetchUserData.pending, (state) => {
 			state.data = null
 			state.status = 'loading'
-		},
-		[fetchUserData.fulfilled]: (state, action) => {
-			state.data = action.payload
-			state.status = 'loaded'	
-			},
-		[fetchUserData.rejected]: (state) => {
-			state.data = null
-			state.status = 'error'
-		},
-		[fetchAuthMe.pending]: (state) => {
-			state.data = null
-			state.status = 'loading'
-		},
-		[fetchAuthMe.fulfilled]: (state, action) => {
-			state.data = action.payload
-			state.status = 'loaded'	
-			},
-		[fetchAuthMe.rejected]: (state) => {
-			state.data = null
-			state.status = 'error'
-				},
-		[fetchRegister.pending]: (state) => {
+		 })
+		builder.addCase(fetchUserData.fulfilled, (state, action) => {
+            state.data = action.payload
+             state.status = 'loaded'
+         })
+		builder.addCase(fetchUserData.rejected, (state) => {
+            state.data = []
+             state.status = 'error'
+        })
+		
+		// reducers for auth
+		builder.addCase(fetchAuthMe.pending, (state) => {
 			state.data = null
 			state.status = 'loading'
-				},
-		[fetchRegister.fulfilled]: (state, action) => {
-			state.data = action.payload
-			state.status = 'loaded'	
-			},
-		[fetchRegister.rejected]: (state) => {
+		 })
+		builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
+            state.data = action.payload
+             state.status = 'loaded'
+         })
+		builder.addCase(fetchAuthMe.rejected, (state) => {
+            state.data = null
+             state.status = 'error'
+        })
+
+		// reducers for register
+		builder.addCase(fetchRegister.pending, (state) => {
 			state.data = null
-			state.status = 'error'
-			},
+			state.status = 'loading'
+		 })
+		builder.addCase(fetchRegister.fulfilled, (state, action) => {
+            state.data = action.payload
+             state.status = 'loaded'
+         })
+		builder.addCase(fetchRegister.rejected, (state) => {
+            state.data = null
+             state.status = 'error'
+        })
+		
 	}
 })
 // функция проверяет если инфа о юзере есть в состоянии значит авторизован
