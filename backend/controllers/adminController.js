@@ -9,7 +9,7 @@ const generateJwt = (id, login, role) => {
     return jwt.sign(
         {id, login, role},
         'random_secret_key123',
-        {expiresIn: '24h'}
+        {expiresIn: '1h'}
     )
 }
 
@@ -56,6 +56,7 @@ class RoomConroller{
     
     async registration (req, res){
         const {login, password, role} = req.body
+        console.log(req.body)
         if (!login || !password) {
             return next(ApiError.badRequest('Некорректный login или password'))
         }
@@ -63,15 +64,17 @@ class RoomConroller{
         if (candidate) {
             return res.json("Пользователь с таким логином уже существует")
         }
+        // зашифрованный пароль
         const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({login, role, password: hashPassword})
+        // токен авторизации
         const token = generateJwt(user.id, user.login, user.role)
         return res.json({token})
     }
 
 
     async login(req, res, next) {
-        const {login, password} = req.body
+        const {login, password, role} = req.body
         const user = await User.findOne({where: {login}})
         if (!user) {
             return res.json('Пользователь не найден')
