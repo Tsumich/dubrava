@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import Header from './components/Header';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
 import Admin from './pages/Admin';
+import Auth from './pages/Auth';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRooms } from './redux/slices';
 import React from 'react';
@@ -37,6 +38,10 @@ const App = observer(() => {
     {
       path: '/admin',
       Component : Admin
+    },
+    {
+      path: '/login',
+      Component : Auth
     },
     {
       path: '/room/:id',

@@ -35,6 +35,10 @@ export const createPayment = async (form) => {
     return data
 }
 
+export const createUser = async (form) => {
+    const {data} = await instance.post('api/reg', form)
+    return data
+}
 
 
 export default instance
