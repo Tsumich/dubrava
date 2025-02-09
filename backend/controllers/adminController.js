@@ -90,7 +90,21 @@ class RoomConroller{
     async check(req, res, next) {
         const token = generateJwt(req.user.id, req.user.login, req.user.role)
         return res.json({token})
-    }
+    } 
 
+    async getMe (req,res){
+        console.log('getting me...', req.userId)
+        try{
+            const user  = await User.findOne({ where: { id: req.userId } })
+            if(!user) {
+                return res.status(400).json({message: "Пользователь не найден"})
+            }	
+            res.json(user)
+        }
+        catch(err){
+            console.log(err)
+            return res.status(400).json({message: "нет доgтупа"})
+        }
+    }
 }
 module.exports = new RoomConroller()
