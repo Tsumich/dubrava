@@ -5,6 +5,8 @@ const { checkAuth } = require('../controllers/checkAuth');
 
 router.post('/booking/create', adminController.createBooking)
 router.post('/payment/create', adminController.createPayment)
+router.post('/request/', adminController.request)
+router.get('/request/', adminController.getRequests)
 
 router.post('/login', adminController.login)
 router.post('/reg', adminController.registration)

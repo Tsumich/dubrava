@@ -12,7 +12,7 @@ const Pagination = ({bookingPerPage, totalBookings, paginate}) => {
                     pageNumbers.map((number, index) => {
                         return (
                             <li className='page-item' key={index}>
-                            <a href='#' className='page-link'  onClick={() => paginate(number)}>
+                            <a href='#'style={{color:'black'}} className='page-link'  onClick={() => paginate(number)}>
                                 {number}
                                 
                             </a>

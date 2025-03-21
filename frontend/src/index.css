@@ -17,7 +17,7 @@ body {
   width: 100%;
   position: absolute;
   top: 0px; left: 0px;
-  z-index: 2;
+  z-index: 4;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,42 +102,40 @@ body {
 
 .container-center{
   margin-bottom: 70px;
-  margin: auto;
-  width: 70%;
+  display: flex;
   height: 470px;
 }
  
 .caurosel-btn{
-   margin: 10px 10px 10px 10px;
-   font-size: 18px;
-
-  color: #ffffffd0;
+  padding: 10px 10px 10px 10px;
+  font-size: 20px;
+  color: #fff;
+  margin-left: 15% !important;
   border-radius: 5px;
-  border-color: #798A77;
-  background-color: #798A77; 
-}
-
-.container-row{
-  width: 100%;
+  border-color: #788077;
+  background-color: #788077; 
 }
 
 .container-carousel{
-  float: left;
+  margin: auto;
+  margin-right: 10%;
 }
 
 .text-carousel{
-  width: 300px;
-  margin-left: 80px;
-  float: left;
+  margin: auto;
+  margin-left: 0;
 }
 
 .text-carousel-main{
   text-align: center;
   margin-bottom: 20px;
   font-size: 20px;
+  width: 300px;
 }
 
 .text-carousel-bottom{
+  font-size: 17px;
+  width: 300px;
   text-align: center;
 }
 
@@ -160,6 +158,8 @@ body {
 
 
 .footer{
+  z-index: 100;
+  margin-top: 20vh;
   display: flex;
   height: 180px;
   width: 100%;
@@ -186,6 +186,7 @@ body {
 
 .services-container{
   display:flex;
+  margin-bottom: 20px;
   justify-content: center;
 }
 
@@ -194,7 +195,7 @@ body {
 }
 
 .btn-to-service{
-  width: 130px;
+  width: 160px;
   margin: 10px 10px 10px 10px;
   border-radius: 7px;
   font-size: 24px;
@@ -212,6 +213,11 @@ body {
 
 .services-discribe{
   width: 590px;
+  font-size: 20px;
+}
+
+.services-discribe p{
+  margin-left: 2%;
 }
 
 .services-picture{
@@ -235,8 +241,8 @@ body {
 
 .sevices-title{
   font-size: 24px;
-  width: 100%;
   margin-bottom: 20px;
+  margin-left: 100px; 
 }
 
 .services-bg{
@@ -256,7 +262,55 @@ body {
   color: rgba(255, 255, 255, 0.815);
   border-radius: 5%;
   border-width: 1px;
-  border-color: #798A77;
+  border-color: #838a77;
   background-color: #798A77; 
 }
 
+.image-container{
+  height: 70vh;
+  overflow: hidden;
+  width: 30vw;
+  min-width: 350px !important;
+  margin: auto;
+  margin-left: 10px;
+  outline: 1px solid white;
+  outline-offset: -15px;
+}
+
+ .services-image{
+    height: 70vh;
+     min-width: 350px !important;
+    margin: auto;
+    
+  }
+
+  .title-image{
+    position:absolute;
+    margin-top: 10px;
+    width: 30vw;
+    text-align: center;
+    color: #fff;
+    font-size: 32px;
+  }
+
+  .service-get-more{
+    background-color: #949169;
+    border: 1px solid #949169;
+    color: white;
+    border-radius: 8px;
+    position: absolute;
+    bottom: 19px;
+    font-size: 20px;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: fit-content;
+   }
+
+  .service-btn-div{
+    position: absolute;
+    width: 30vw;
+    height:70vh ;
+  }
+
+   

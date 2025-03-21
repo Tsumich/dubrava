@@ -8,11 +8,11 @@ const Header = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 	const isAuth = useSelector(isAuthSelector)
-    console.log(isAuth , 'isAUth')
  	const onClickLogout = () => {
 		if(window.confirm('Выйти?')){
 			dispatch(logout())
 			window.localStorage.removeItem('token')
+            navigate('/')
 		}
 	};
 
@@ -27,13 +27,22 @@ const Header = () => {
             <div className='logo-text'>DUBRAVA</div>
              
             <div className='headerElement'>
-                <button className='header-button'>О нас</button>
-                <button className='header-button'>Услуги</button>
+                <button className='header-button' onClick={() => navigate('/about')}>О нас</button>
+                <button className='header-button'
+                    onClick={() => {
+                        if(window.location.pathname == '/'){        
+                            document.getElementById('services-block').scrollIntoView({behavior: 'smooth'})}
+                        else{
+                            navigate('/')
+                            //document.getElementById('services-block').scrollIntoView({behavior: 'smooth'})
+                        }
+                    }}
+                 >Услуги</button>
                 <button className='header-button'>Проживание</button>
             </div>
             {isAuth ? <div>
                 <button className='header-button' onClick={(() => {
-                    navigate('/admin')
+                    navigate('/profile')
                 })}>Профиль</button>
                 <button className='header-button' onClick={onClickLogout}>Выйти</button>
             </div>

@@ -34,6 +34,9 @@ const Room = sequelize.define('room', {
     },
     info:{
         type: DataTypes.STRING
+    },
+    area:{
+        type: DataTypes.BIGINT
     }
 })
 
@@ -42,8 +45,15 @@ const Image = sequelize.define('image', {
         primaryKey: true,
         autoIncrement: true
     },
-    image: {type: DataTypes.STRING, 
+    image: {
+        type: DataTypes.STRING, 
     },    
+    info: {
+        type: DataTypes.STRING, 
+    },    
+    title: {
+        type: DataTypes.STRING, 
+    }, 
 })
 
 
@@ -85,7 +95,10 @@ const Booking = sequelize.define('booking', {
     },
     IsPaid: {
         type: DataTypes.BOOLEAN
-    }
+    },
+    confirmed: {
+        type: DataTypes.BOOLEAN
+    },
 })
 
 const Payment = sequelize.define('payment', {

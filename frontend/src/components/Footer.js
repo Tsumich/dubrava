@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo2 from '../static/logo2white.png'
+import { useNavigate } from 'react-router-dom';
 
-const Footer = () => {
+const Footer = ({showFooter}) => {
+    const [footer, setFooter] = useState(showFooter ? showFooter : true)
+    const navigate = useNavigate()
+    
     return (
+        footer ? 
         <div className='footer'>
              
             <div className='footer-main-info' >
@@ -15,7 +20,7 @@ const Footer = () => {
                     <p>д. Ляпки ул. Центральная , 1г</p>
                     <p>+7 983 253 1000</p>
                     <p>grk.lukomorye@yandex.ru</p>
-                    <div> © Tsumi, 2025</div>
+                    <div> © DudravaBase, 2025</div>
                 </div>
             </div>
             <div className='footer-site-menu'>
@@ -29,12 +34,12 @@ const Footer = () => {
             <div className='footer-contacts' >
                 <h5>База отдыха</h5>
                 <div className='line' style={{backgroundColor:"#fff", width:"90%", marginBottom:"10px"}}></div>
-                <p>О нас</p>
+                <p style={{cursor:"pointer"}} onClick={() => navigate('/about')}>О нас</p>
                 <p>Бронирование и оплата</p>
                 <p>Правила проживания</p>
             </div>
            
-        </div>
+        </div> : <div></div>
     );
 }
 

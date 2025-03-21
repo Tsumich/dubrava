@@ -3,6 +3,9 @@ const {Room, Booking, Image, Guest, Payment} = require('../models/models')
 const { Op } = require('sequelize')
 const Sequelize = require('sequelize')
 const moment = require("moment");
+const { checkAuth } = require('./checkAuth');
+ 
+
 
 class RoomConroller{
 
@@ -15,7 +18,6 @@ class RoomConroller{
     async booking(req, res){
         console.log('getings bookings...')
         let {start, end} = req.query
-        console.log(start, end)
         let booking
         if(start && end){
             booking = await Booking.findAll({
@@ -83,5 +85,9 @@ class RoomConroller{
      }catch(e){console.log(e)}          
      }
  
+     async setPrice(req, res){
+        let {id, price} = req.query
+        await Room.update( { firstName: 'John', }, { where: { userId: 2, }, } )
+    }
 }
 module.exports = new RoomConroller()

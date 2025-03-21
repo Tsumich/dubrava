@@ -1,9 +1,14 @@
 const uuid = require('uuid')
 const {Room, Booking, Image, Guest, Payment, User} = require('../models/models')
 const { Op } = require('sequelize')
-const Sequelize = require('sequelize')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const AsyncLock = require('async-lock');
+const lock = new AsyncLock();
+const { Mutex } = require('async-mutex');
+const mutex = new Mutex();
+const sequelize = require('../db')
+const { Sequelize, Transaction } = require('sequelize');
 
 const generateJwt = (id, login, role) => {
     return jwt.sign(
@@ -13,27 +18,77 @@ const generateJwt = (id, login, role) => {
     )
 }
 
-class RoomConroller{
-    async createBooking (req,res) {
-        let {checkIn, checkOut, roomId, guests, name, lastName, phoneNumber} = req.body
-        console.log(checkIn)
-        const booking = await Booking.create({
-            checkIn:checkIn, 
-            checkOut:checkOut, 
-            roomId: roomId,
-            name:name,
-            lastName:lastName,
-            phoneNumber:phoneNumber
-            }).then(booking =>
-           { if(guests){guests.map(async guest => {
-                    const createsGuest = await Guest.create({
-                        lastName:guest.lastName,
-                        name: guest.lastName,
-                        bookingId: booking.id
-                    })
-                })}}
-            )
+class AdminController{
+
+    async request (req, res) {
+        let {bookingId} = req.body.params
+        let booking =  await Booking.update(
+            {confirmed:true},
+            {
+                where: {
+                id: bookingId
+                }
+            }
+        ) 
         return res.json(booking)
+    }
+   
+    async getRequests(req, res){
+        const booking = await Booking.findAll({
+            where:{
+                confirmed:false
+            },
+            include: [{model: Guest, as: "guest"}, {model: Room, as: "room"}]
+        })
+        return res.json(booking);  
+    }
+
+     async createBooking (req,res) {
+        let {checkIn, checkOut, roomId, guests, name, lastName, phoneNumber, price, isPaid, confirmed} = req.body
+        console.log(lastName)
+        try{
+            await Booking.findAll({
+            where: {
+                    roomId: roomId,
+                    [Op.or]: [
+                        { [Op.and]: [{ checkIn: { [Op.lte]: checkIn } }, { checkOut: { [Op.gte]: checkIn } }] },
+                        { [Op.and]: [{ checkIn: { [Op.lte]: checkOut } }, { checkOut: { [Op.gte]: checkOut } }] },
+     
+                        { [Op.and]: [{ checkIn: { [Op.lte]: checkIn } }, { checkOut: { [Op.gte]: checkOut } }] },
+                        { [Op.and]: [{ checkIn: { [Op.gte]: checkIn } }, { checkOut: { [Op.lte]: checkOut } }] },
+                    ],
+                },
+            }).then( async (data) => {
+                if(data.length == 0) {
+                    const booking =  await Booking.create({
+                        checkIn:checkIn, 
+                        checkOut:checkOut, 
+                        roomId: roomId,
+                        name:name,
+                        price:price,
+                        isPaid:false,
+                        lastName:lastName,
+                        phoneNumber:phoneNumber,
+                        confirmed: confirmed
+                        }).then(async booking => { 
+                            console.log(booking.id)
+                            if(guests & booking){guests.map( async guest => {
+                            const createsGuest = await Guest.create({
+                                lastName:guest.lastName,
+                                name: guest.lastName,
+                                bookingId: booking.id
+                            })
+                            })}
+                            return res.json('Запись на бронирование создана')
+                            }
+                            
+                        )
+            }else{
+                return res.json('Невозможно заселиться на выбранный период')
+            }
+        })
+    } catch(err){}
+
     }
 
     async createPayment (req, res) {
@@ -106,5 +161,65 @@ class RoomConroller{
             return res.status(400).json({message: "нет доgтупа"})
         }
     }
+
+    async createBooking2 (req,res) {
+        let {checkIn, checkOut, roomId, guests, name, lastName, phoneNumber, price, isPaid, confirmed} = req.body
+        console.log('sdfsdfsdf')
+        lock.acquire('resourceKey', async () => {
+            const booking = await Booking.findAll({
+                where: {
+                        roomId: roomId,
+                        confirmed: true,
+                        [Op.or]: [
+                            { [Op.and]: [{ checkIn: { [Op.lte]: checkIn } }, { checkOut: { [Op.gte]: checkIn } }] },
+                            { [Op.and]: [{ checkIn: { [Op.lte]: checkOut } }, { checkOut: { [Op.gte]: checkOut } }] },
+         
+                            { [Op.and]: [{ checkIn: { [Op.lte]: checkIn } }, { checkOut: { [Op.gte]: checkOut } }] },
+                            { [Op.and]: [{ checkIn: { [Op.gte]: checkIn } }, { checkOut: { [Op.lte]: checkOut } }] },
+                        ],
+                    },
+                })            
+                await processResource();
+            return booking;
+          }).then( async (data) => {
+            console.log(data)
+            if(data.length == 0) {
+                const booking =  await Booking.create({
+                    checkIn:checkIn, 
+                    checkOut:checkOut, 
+                    roomId: roomId,
+                    name:name,
+                    price:price,
+                    isPaid:false,
+                    lastName:lastName,
+                    phoneNumber:phoneNumber,
+                    confirmed: confirmed
+                    }).then(booking => {   
+                        console.log(booking.id)
+                        if(guests & booking){guests.map( async guest => {
+                        const createsGuest = await Guest.create({
+                            lastName:guest.lastName,
+                            name: guest.lastName,
+                            bookingId: booking.id
+                        })
+                        })}
+                        return res.json('Запись на бронирование создана')}
+                        
+                    )
+                
+        }else{
+            return res.json('Нельзя заселиться на данный период')
+        }
+    }).catch((err) => {
+        console.log(err)
+            res.status(500).send('Error');
+          });
+
+    }
+
 }
-module.exports = new RoomConroller()
+
+
+
+
+module.exports = new AdminController()

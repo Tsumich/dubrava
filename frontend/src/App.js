@@ -13,7 +13,11 @@ import RoomPage from './pages/RoomPage';
 import BookingForm from './pages/BookingForm';
 import Footer from './components/Footer';
 import { fetchAuthMe, isAuthSelector } from './redux/slicesAuth';
- 
+import AdminBooking from './pages/AdminBooking';
+import AdminRooms from './pages/AdminRooms';
+import About from './pages/About';
+import Request from './components/Request';
+
 
 
 const App = observer(() => {
@@ -42,8 +46,20 @@ const App = observer(() => {
       Component: Searching
     },
     {
-      path: '/admin',
+      path: '/profile',
       Component : Admin
+    },
+    {
+      path: '/bookings',
+      Component : AdminBooking
+    },
+    {
+      path: '/req',
+      Component : Request
+    },
+    {
+      path: '/roomslist',
+      Component : AdminRooms
     },
     {
       path: '/login',
@@ -56,6 +72,10 @@ const App = observer(() => {
     {
       path:'/booking',
       Component: BookingForm
+    },
+    {
+      path:'/about',
+      Component: About
     }
 
   ]

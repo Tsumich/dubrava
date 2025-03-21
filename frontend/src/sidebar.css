@@ -1,0 +1,80 @@
+.sidebar{
+    width: 5%;
+    margin-top: 0;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+     margin-top: 20vh;
+    transition: 0.2s ease-out;
+}
+
+.sidebar-expanded{
+    color: #fff;
+    transition: 0.1s ease-out;
+    width: 19%;
+    margin-top: 0;
+    height: 100vh;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    background-color: #494848;
+    padding-top: 20vh;
+ }
+
+
+.profile svg{
+    margin: auto;
+}
+
+.profile svg path{
+    stroke:#7c7575;
+}
+
+.profile-expanded svg{
+    margin-left: 0px;
+}
+
+.profile-expanded svg path{
+    stroke: #fff;
+}
+
+.profile-expanded .profile-el{
+    padding: 10px 10px 10px 10px;
+}
+
+
+.profile .profile-el{
+    padding: 10px 10px 10px 10px;
+}
+
+.profile-el{ 
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    font-size: 16px;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+}
+
+.profile-el:hover{
+    background-color: #c0bcbc;
+    border-radius: 9px;
+}
+
+.profile-el p{
+    align-items: center;
+    margin: auto;
+    margin-left: 10px;
+ }
+
+.profile-title{
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.admin-zone{
+    margin-top: 30px;
+}

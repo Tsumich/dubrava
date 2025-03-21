@@ -1,63 +1,86 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getBooking, getRoom } from '../redux/slices';
 import { useNavigate } from 'react-router-dom';
 import house from '../static/house.png'
 import calendar from '../static/calendar.png'
 import { Button } from 'react-bootstrap';
-import { Checkbox } from 'primereact/checkbox';
 import { createBooking } from '../axios';
+import PersonalDataDoc from '../components/modal/PersonalDataDoc';
+import Information from '../components/modal/Information';
 
 const BookingForm = () => {
     const navigate = useNavigate()
+    const [isLoading, setLoading] = useState(false);
     const [booking, setBooking] = useState( useSelector(getBooking))
-    console.log(booking)
     if(!booking)  {navigate('/search')}
     const [room, setRoom] = useState( useSelector(getRoom))
     const [guests, setGuests] = useState ([])
-    const [imGust, setImGuest] = useState(false)
+    const [imGuest, setImGuest] = useState(false)
     const [lastName, setLastName] = useState('')
     const [name, setName] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
+    const [getDoc, setGetDoc] = useState(false)
+    const serverMessage = useRef('')
+    const [showMessage, setShowMessage] = useState(false)
 
     useEffect(() => {
         if (booking){let temp = []
+            console.log('bokking effect')
         for(let i=0; i<booking.guestsAmount ; i++){
-            let number = Date.now()
             temp.push({
                 name: '',
                 lastName: '',
-                number:  Date.now()
+                number:  Date.now()+ i
             })
         }
-        setGuests(temp)}
+        setGuests(temp)}   
     }, [])
 
-     const sendForm = () => {
-        const roomId = room.id
+    
+     const sendForm = async (event) => {
+        const roomId = room ? room.id : booking.room.id
         const checkIn = booking.checkInDry
         const checkOut = booking.checkOutDry
+        const price = room ? room.price * booking.days : booking.room.price * booking.days
+        const confirmed = booking.confirmed ? true : false
         const formData = {
-            checkIn, checkOut, roomId, guests, name, lastName, phoneNumber
+            checkIn, checkOut, roomId, guests, name, lastName, phoneNumber, price, confirmed
         }
-        createBooking(formData)
+        event.preventDefault(); // Предотвращаем перезагрузку страницы
+        
+        const showModal = () => {
+            setLoading(false)
+            setShowMessage(true)
+        }
+
+        await new Promise((resolve) => {
+            setLoading(true)
+            setTimeout(resolve, 2000)
+                   
+        })
+            createBooking(formData).then(data => {  
+            serverMessage.current = data
+            showModal(data)
+        })
     }
 
     const setGuestName = (key, value, number) => {
-        setGuests(guests.map(i => i.number === number ? {...i, [key]: value} : i))
+        setGuests(guests.map(i => i.number === number ? {...i, [key]: value? value : ''} : i))
     }
 
-    return (
+      return (
         <div>
             {!booking ? <div> {navigate('/')}</div>
             :
-            <div>
-            <div className='container-booking'>    
+            <div className='booking-wr'>
+               
+            <div  className='container-booking'>    
             <div className='booking-panel'>
                 <div className='booking-title'>Заказ</div>
                 <div className='booking-room-title'>
                     <img src={house} style={{width:'30px'}}/>
-                    {room.title}
+                    {room ? room.title : booking.room.title}
                 </div>
                 <div className='booking-dates'>
                     <img src={calendar} style={{width:'30px'}}/>
@@ -69,37 +92,47 @@ const BookingForm = () => {
                 </div>  
             </div>
             <div  className='booking-price'>
-                {console.log(room)}
-                Стоимость: {room.price * booking.days} руб.
+                 Стоимость: {room ? room.price * booking.days : booking.room.price * booking.days} руб.
                 </div> 
             </div>
 
         
-
+            
             <div className='booking-form' style={{marginBottom:'20px'}}>
+                 <form onSubmit={ sendForm } id='sendForm'> 
                 <div className='booking-title'>Данные о заказе</div>
 
                 <div className='client-title-container'>
-                    <div className='client-title' style={{marginBottom:"10px"}}>Покупатель</div>
+                    <div className='client-title' >Покупатель</div>
+                    {
+                        name && lastName ? 
                     
                     <div class="form-check" >
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate"/>
+                    <input class="form-check-input" onClick={() => setImGuest(!imGuest)} type="checkbox" ONvalue="" id="flexCheckIndeterminate"/>
                     <label class="form-check-label" for="flexCheckIndeterminate">
                         Я гость
                     </label>
                     </div>
+                    : <></>
+                    }
                 </div>
                 <div className='client-fio-line'>
                     <div>Фамилия:</div>
-                    <input onChange={e => setLastName(e.target.value)}/>
+                    <input onChange={e => {
+                        setLastName(e.target.value)
+                        if(imGuest == true) {
+                            setGuests(guests.map(i => i.number === guests[0].number ? {...i, 
+                                ['lastName']: lastName} : i))
+                        }
+                    }} required/>
                 </div>
                 <div className='client-fio-line'>
                     <div>Имя:</div>
-                    <input onChange={e => setName(e.target.value)}/>
+                    <input onChange={e => setName(e.target.value)} required/>
                 </div>
                 <div className='client-number-line'>
                     <div>Телефон:</div>
-                    <input onChange={e => setPhoneNumber(e.target.value)}/>
+                    <input onChange={e => setPhoneNumber(e.target.value)} required/>
                 </div>
 
                 <div className='client-title' style={{
@@ -116,12 +149,13 @@ const BookingForm = () => {
                      <tbody>
                     {guests.map((guest, i) => {  
                     return(
+                         
                         <tr  key={i.number}>    
                             <td><div style={{width:'50px',
                                      marginRight:'10px'}}>Гость {i+1}</div></td>
-                            <td><input id={i+1} onChange={(e) => setGuestName('lastName', e.target.value, i.number)} style={{marginRight:'10PX', 
+                            <td><input required value={imGuest && i == 0 ? lastName : null} id={i+1} onChange={(e) => setGuestName('lastName', e.target.value, i.number)}  style={{marginRight:'10PX', 
                                 }} /></td>
-                            <td><input  onChange={(e) => setGuestName('name', e.target.value, i.number)}/></td>
+                            <td><input required value={imGuest  && i == 0 ? name : null} onChange={(e) => setGuestName('name', e.target.value, i.number)}/></td>
                         </tr>
                     )
                 })}
@@ -129,17 +163,24 @@ const BookingForm = () => {
                 </table>
 
                 <div className="flex align-items-center">
-                    <Checkbox inputId="ingredient1" name="pizza" value="Cheese"   />
-                    <label htmlFor="ingredient1" className="ml-2">Я согласен с условиями обработки персональных данных</label>
+                    <input required class="form-check-input" type='checkbox'/>
+                    <label htmlFor="ingredient1"className="ml-2">Я согласен с <a onClick={() => setGetDoc(true)} href='#'>условиями обработки персональных данных</a></label>
                 </div>
 
-                <Button type='submit' onClick={() => sendForm()} className='btn-submit'>Отправить</Button>
-            </div>
-             
+                {
+                    !isLoading ? 
+                    <Button type='submit'  className='btn-submit'   >Отправить</Button>
+                : <div class="spinner-grow" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                 </div>
+              }
+                </form>
+             </div>
+             <PersonalDataDoc show={getDoc} onHide={() => setGetDoc(false)}/>
+             <Information show={showMessage} message={serverMessage.current} onHide={() => setShowMessage(false)}></Information>
             </div>
             }
         </div>
     );
 }
-
 export default BookingForm;

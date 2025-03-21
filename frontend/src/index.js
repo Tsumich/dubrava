@@ -7,7 +7,9 @@ import {store} from './redux/store'
 import './search.css';
 import './table.css'
 import './room.css'
+import './sidebar.css'
 import './admin.css'
+import './index.scss'
 import '../node_modules/react-chatbot-kit/build/main.css'
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';

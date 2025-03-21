@@ -1,5 +1,5 @@
 import React , {useState} from 'react';
-import '../auth.css'
+//import '../auth.css'
 import { useDispatch } from 'react-redux';
 import { fetchUserData } from '../redux/slicesAuth';
 import { useNavigate } from 'react-router-dom';
@@ -19,16 +19,17 @@ const Auth = () => {
 		if(!data.payload){
 			return alert('Не удалось авторизоваться')
 		}
-        console.log(data)
 		if('token' in data.payload){
-            console.log(formData)
 			window.localStorage.setItem('token',data.payload.token)
             navigate('/')
 		}
+        window.location.reload();
 	}
-    
+    require('../auth.css')
+
     return (
-        <div className='auth-wr'>
+        
+         <div className='auth-wr'>
         <div class="auth-main">
             <h1>Авторизация</h1>
             <h6 style={{color:'#70756f'}}>Введите данные вашего аккаунта </h6>
@@ -54,11 +55,7 @@ const Auth = () => {
                 </div>
             </div>
         
-        <p>Not registered?
-            <a href="#">
-                Create an account
-            </a>
-        </p>
+      
         </div>
         </div>
     );

@@ -42,3 +42,65 @@
     margin-bottom: 20px;
     font-size: 30px;
 }
+
+.booking-table tr td{
+    text-align: center;
+ }
+
+ .booking-table {
+    text-align: center;
+ }
+
+ .booking-admin-payment{
+    width: 100px;
+    margin: 10px 10px 10px 10px;
+    margin: auto !important;
+    border-radius: 7px;
+    font-size: 24px;
+    background-color: #696a77 !important;
+    border-radius: 0%;
+    border-width: 1px;
+    border-color:#696a77 !important;
+}
+
+.booking-admin-payment:hover{
+    background-color: #52525c !important;
+    border-color:#52525c !important;
+}
+
+.booking-admin-create{
+    border-radius: 7px;
+    font-size: 24px;
+    background-color: rgb(190, 161, 98) !important;; 
+    border-radius: 0%;
+    border-width: 1px;
+    border-color:rgb(190, 161, 98) !important;
+ }
+
+ .table{
+    width: 80% !important;
+    margin: auto;
+ }
+
+ .admin-tables h1{
+    margin-left: 30vh;
+ }
+
+ .admin-tables button{
+    margin-left: 30vh;
+    margin-bottom: 20px;
+ }
+ 
+.admin-room-action{
+    margin: 0 !important;
+    margin-left: 10px !important;
+    border: none;
+    border-radius: 10px !important;
+}
+
+.admin-tables{
+    border: 1px solid #c8c8cc;
+     width: 80vw;
+     margin: auto;
+     margin-top: 15vh;
+}

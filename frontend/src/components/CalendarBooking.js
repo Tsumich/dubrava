@@ -25,7 +25,7 @@ const CalendarBooking = ({startDate, rooms}) => {
             <div className='calendar-loading'></div>
         )
     }
-
+console.log('dfgdfg')
     const getDates = (startDate,toNext) => {
         datesArray = [] // большие даты
         dateFormatArray = []
@@ -84,7 +84,6 @@ const getResult = (startDateInPeriod, endDateInPeriod, datesArray) => {
             })
             resultForAllRoom.push(resultForRoom)
             })
-            console.log(resultForAllRoom)
             globalResult.push(resultForAllRoom)
            setResult(globalResult) 
            setLoading(true)

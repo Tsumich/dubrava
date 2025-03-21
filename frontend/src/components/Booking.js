@@ -5,30 +5,29 @@ import Note from './Note';
 import Pagination from './Pagination';
 import { Button } from 'react-bootstrap';
 import CreateBooking from './modal/CreateBooking';
+import { useSelector } from 'react-redux';
 
+import { useNavigate } from 'react-router-dom';
 
 const Booking =  ({showingEnd}) => {
     const [bookings, setBookings] = useState([])
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
-    const [bookingPerPage] = useState(10)
-
+    const [bookingPerPage] = useState(5)
     const [createBooking, setCreateBooking] = useState(false)
 
+    const navigate = useNavigate()
+    if(!useSelector(state => state.auth)) navigate('/')
     useEffect(() => {
         const getData = async() => {
             setLoading(true)
             !showingEnd ? await getBooking().then((data)=> {
-                console.log(data)
                 setBookings(data)
             setLoading(false)
             }) : await getEnd().then((data)=> {
-                console.log(data)
                 setBookings(data)
             setLoading(false)
             })
-
-
         }
         getData()
     }, []) 
@@ -46,11 +45,11 @@ const Booking =  ({showingEnd}) => {
     <div className='admin-tables'>
        <div className='container mt-5'>
         <h1 className='admin-table-title'>{showingEnd ? 'Проживание подходит к концу' : 'Бронирование домов'} </h1>
-        <div> {!showingEnd ? <Button  onClick={() => setCreateBooking(true)}>Создать бронь</Button> : <></>} </div>
+        <div> {!showingEnd ? <Button className='booking-admin-create' onClick={() => setCreateBooking(true)}>Создать бронь</Button> : <></>} </div>
         
-            <table class="table">
+            <table className="table" >
                 <thead>
-                    <tr>
+                    <tr className='booking-table'>
                     <th scope="col">Комната</th>
                     <th scope="col">Дата заезда</th>
                     <th scope="col">Дата выезда</th>
@@ -65,13 +64,14 @@ const Booking =  ({showingEnd}) => {
                     })}
                         
                 </tbody>
-            </table>
-        
-
-            <Pagination 
+                <Pagination
                 bookingPerPage={bookingPerPage} 
                 totalBookings={bookings.length}
                 paginate={paginate}/>
+            </table>
+        
+
+            
 
         </div>
 

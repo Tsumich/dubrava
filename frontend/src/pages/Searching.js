@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Calendar } from 'primereact/calendar';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
@@ -22,19 +22,26 @@ const Searching = () => {
     const [showCalendar, setShowCalendar] = useState(false)
  
 
-    let dayDifferent
+    let dayDifferent = useRef()
+    console.log(checkIn, checkOut)
     if((checkIn && checkOut) && (checkOut > checkIn)){
-        dayDifferent = Math.round((checkOut.setHours(0) - checkIn.setHours(0)) / (1000 * 60 * 60 * 24))
+        dayDifferent.current = Math.round((checkOut.setHours(0) - checkIn.setHours(0)) / (1000 * 60 * 60 * 24))
+        console.log(dayDifferent)
     }
 
     const submitSearch = () => {
-        if(checkIn > checkOut) {return console.log('ээээ')}
+        if(checkIn > checkOut) return
+        if(!checkIn || !checkOut) return 
         const roomsId = []
         rooms.items.forEach( room => {
             if(room.guest_amount >= guestsAmount){
                 roomsId.push(room.id)
             }
         })
+        if(roomsId.length == 0) {
+            setShowCalendar(true)
+            return
+        }
 
         const savedBooking = {
             checkIn: checkIn.toLocaleDateString(),
@@ -42,7 +49,7 @@ const Searching = () => {
             checkInDry:checkIn,
             checkOutDry:checkOut,
             guestsAmount: guestsAmount,
-            days: dayDifferent
+            days: dayDifferent.current
         }
         dispatch(setBooking(savedBooking))
 
@@ -57,9 +64,12 @@ const Searching = () => {
             })
             let temp = []
             rooms.items.forEach((room) => {
-                if(!(arrayOfBookingId.includes(room.id))) {
+                if((roomsId.includes(room.id))){
+                    if(!(arrayOfBookingId.includes(room.id))) {
                     temp.push(room)
+                    }
                 }
+                
             })
             temp.length == 0? setShowCalendar(true) : setShowCalendar(false)
             setVacancies(temp) 
@@ -83,7 +93,7 @@ const Searching = () => {
                                     maxWidth:'200px'}}
                             value={checkIn} 
                             showIcon 
-                            onChange={(e) =>  setCheckIn(e.value)} 
+                            onChange={(e) => e.value ? setCheckIn(e.value) : setCheckIn(temp)} 
                             dateFormat='yy/mm/dd'/>
                         </td>
                     </tr>
@@ -96,7 +106,11 @@ const Searching = () => {
                         <Calendar 
                         value={checkOut} 
                         showIcon 
-                        onChange={(e) => setCheckOut(e.value)}
+                        onChange={(e) => {
+                            setCheckOut(e.value)
+                        } 
+
+                        }
                          dateFormat='yy/mm/dd' 
                          style={{fontSize:'15px', height:'30px'}}/>
                         </td>
@@ -104,7 +118,7 @@ const Searching = () => {
 
                     <tr style={{height:'40px'}}>
                         <td>Суток:</td>
-                        <td>{checkIn > checkOut || checkIn == checkOut ? "минимум 1 день!" : dayDifferent}</td>
+                        <td>{checkIn > checkOut || checkIn == checkOut ? "минимум 1 день!" : dayDifferent.current}</td>
                     </tr>
 
                     <tr>
@@ -112,7 +126,7 @@ const Searching = () => {
                             Гостей: 
                         </td>
                         <td>
-                            <input value={guestsAmount} onChange={(e)=>setGuestsAmount(e.target.value)}></input>
+                            <input value={guestsAmount} type='number' min="0" max="10" onChange={(e)=>setGuestsAmount(e.target.value)}></input>
                         </td>
                     </tr>
 
@@ -129,7 +143,7 @@ const Searching = () => {
            
            { !showCalendar ? <Rooms rooms={vacancies?vacancies:rooms.items}/> :
              <CalendarBooking startDate={checkIn} rooms={rooms}/>
-  }
+            }
 
             </div>
 

@@ -39,9 +39,8 @@
 }
 
 .rooms{
+    margin: auto;
     margin-top: 100px;
-    margin-left: 100px;
-    float: left;
 }
 
 .room-in-search{
@@ -101,7 +100,7 @@
     margin-left: 20px;
     width: 380px;
     float: left;
-    height: 300px;
+    height: 100%;
 }
 
 .room-title{ 
@@ -112,8 +111,15 @@
 }
 
 .room-price{
+    margin-top: 20px;
+}
 
-    margin-top: 40px;
+.guest-icon{
+    margin-top: 20px;
+}
+
+.room-info-short{
+    white-space: nowrap;
 }
 
 .p-datepicker table td{
@@ -127,6 +133,13 @@
 
 .button-more{
     background-color: rgb(91, 129, 104) !important;; 
+    border: none !important;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.button-edit{
+    background-color: rgb(190, 161, 98) !important;; 
     border: none !important;
     margin-top: 10px;
     margin-bottom: 5px;
@@ -149,4 +162,9 @@
 .p-button {
     background: #7c8789;
     border:none;
+}
+
+.buttons-more-container{
+    position: absolute;
+    bottom: 0;
 }
