@@ -37,7 +37,7 @@ const Room  = ({room}) => {
             
              <div className='room-photos'>    
                 {
-                <Image className='room-main-photo' src={`http://176.196.11.180:9001/${mainImage}`}></Image> 
+                <Image className='room-main-photo' src={`http://176.196.11.180:9000/${mainImage}`}></Image> 
                 }     
 
                 <div className='bg-image'></div>
@@ -48,21 +48,21 @@ const Room  = ({room}) => {
                             width={90} 
                             height={80} 
                             style={{border:'50px'}}
-                            src={`http://176.196.11.180:9001/${room.image[0].image}`}></Image>
+                            src={`http://176.196.11.180:9000/${room.image[0].image}`}></Image>
 
                       
                     <Image onClick={()=>{changeImage(1, room.image[1].id)}} 
                             className={activePhoto == room.image[1].id? 'rooms-image-active':'rooms-image' }
                             width={90} 
                             height={80} 
-                            src={`http://176.196.11.180:9001/${room ? room.image[1].image : ""}`}></Image>
+                            src={`http://176.196.11.180:9000/${room ? room.image[1].image : ""}`}></Image>
                     
                     
                     <Image onClick={(e)=>{changeImage(2, room.image[2].id)}}
                             className={activePhoto == room.image[2].id? 'rooms-image-active':'rooms-image' }
                             width={90} 
                             height={80} 
-                            src={`http://176.196.11.180:9001/${room.image[2].image}`}></Image>
+                            src={`http://176.196.11.180:9000/${room.image[2].image}`}></Image>
                 </div>
             </div>
 
