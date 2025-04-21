@@ -17,7 +17,7 @@ const start = async() => {
     try{
         await sequelize.authenticate()
         await sequelize.sync()
-        app.listen(9000, () => console.log('Server listen 9000 port'))
+        app.listen(9000, '0.0.0.0', () => console.log('Server listen 9000 port'))
     }catch(err){
         console.log(err)
     }
