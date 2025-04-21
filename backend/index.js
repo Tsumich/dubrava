@@ -27,6 +27,8 @@ const start = async() => {
     // }catch(err){
     //     console.log(err)
     // }
+    await sequelize.authenticate()
+     await sequelize.sync()
     https.createServer(options, app)
         .listen(9000, function (req, res) {
             console.log("Server started at port 9000");
