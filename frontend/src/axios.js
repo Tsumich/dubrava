@@ -4,7 +4,7 @@ const instance = axios.create({
 	//baseURL: 'http://192.168.0.124:9000/'
     //baseURL:'http://176.197.167.29:9002/'
     //baseURL: 'http://192.168.0.128:9000/'
-    baseURL: 'https://pd8dnbeog7.eu.loclx.io'
+    baseURL: 'http://pd8dnbeog7.eu.loclx.io'
     //baseURL: 'http://localhost:9000/'
 }) 
 
