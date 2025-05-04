@@ -7,10 +7,14 @@ import RoomSkelet from './RoomSkelet'
 const Rooms = ({rooms}) => {
     const [activePhotos, setActivePhotos] = []
 
-    const isRoomLoading = rooms.status === 'loading'
+    const isRoomLoading = rooms.status == 'loading'
     const roomEmpty = {
+        id: '222',
         title: '',
-        price: ''
+        price: '',
+        image : {
+            id: '33'
+        }
     }
 
     return (
@@ -26,9 +30,10 @@ const Rooms = ({rooms}) => {
                 <img className='search-line' src={line}></img>
             </div>    
             </div>   
+            {console.log(roomEmpty)}
             {(isRoomLoading ? [...Array(5)] : rooms).map((room, index) =>  //использует массив анд-ов если не будет постов
                 isRoomLoading ? ( // загрузился ли пост?
-            <Room key={index} room={roomEmpty} isLoading={true} /> // пока пост не подгрузилсся рендерится скелет
+            < ></> // пока пост не подгрузилсся рендерится скелет
             ) : (<Room   key={index} room={room}/>))
             }
                 

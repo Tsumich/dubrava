@@ -17,17 +17,19 @@ const Room  = ({room}) => {
     }
     let guestAmount = Array.from({length: room.guest_amount}, (_, i) => i); 
  
-     const mainPhotoPath = `http://localhost:9000/${mainImage}`
-     const history = useNavigate()
+    const history = useNavigate()
 
     const {data} = useSelector(state => state.auth)
-     const role = data==null? 'USER' : data.role
+    const role = data==null? 'USER' : data.role
 
-     const goToRoomPage = () =>{
+    const goToRoomPage = () =>{
         window.scrollTo(0, 0)
         dispatch(setRoom(room))
         history('/room/' + room.id)
      }
+
+    const URL = 'https://dubrava789.onrender.com/'
+    const mainPhotoPath = `http://localhost:9000/${mainImage}`
 
     const info = useRef('')
     info.current = room.info ? room.info.substr(0, 123) + ' ...' : ''
@@ -49,21 +51,21 @@ const Room  = ({room}) => {
                             width={90} 
                             height={80} 
                             style={{border:'50px'}}
-                            src={`http://176.196.11.180:9000/${room.image[0].image}`}></Image>
+                            src={`http://176.196.11.180:9000/${room.image[0]?.image}`}></Image>
 
                       
-                    <Image onClick={()=>{changeImage(1, room.image[1].id)}} 
-                            className={activePhoto == room.image[1].id? 'rooms-image-active':'rooms-image' }
+                    <Image onClick={()=>{changeImage(1, room.image[1]?.id)}} 
+                            className={activePhoto == room.image[1]?.id? 'rooms-image-active':'rooms-image' }
                             width={90} 
                             height={80} 
-                            src={`http://176.196.11.180:9000/${room ? room.image[1].image : ""}`}></Image>
+                            src={`http://176.196.11.180:9000/${room ? room.image[1]?.image : ""}`}></Image>
                     
                     
-                    <Image onClick={(e)=>{changeImage(2, room.image[2].id)}}
-                            className={activePhoto == room.image[2].id? 'rooms-image-active':'rooms-image' }
+                    <Image onClick={(e)=>{changeImage(2, room.image[2]?.id)}}
+                            className={activePhoto == room.image[2]?.id? 'rooms-image-active':'rooms-image' }
                             width={90} 
                             height={80} 
-                            src={`http://176.196.11.180:9000/${room.image[2].image}`}></Image>
+                            src={`http://176.196.11.180:9000/${room.image[2]?.image}`}></Image>
                 </div>
             </div>
 
