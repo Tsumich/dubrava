@@ -46,15 +46,15 @@ const App = observer(() => {
       Component: Searching
     },
     {
-      path: '/profile',
+      path: '/admin/profile',
       Component : Admin
     },
     {
-      path: '/bookings',
+      path: '/admin/bookings',
       Component : AdminBooking
     },
     {
-      path: '/req',
+      path: '/admin/req',
       Component : Request
     },
     {
@@ -70,7 +70,7 @@ const App = observer(() => {
       Component : RoomPage
     },
     {
-      path:'/booking',
+      path:'/room/:id/booking',
       Component: BookingForm
     },
     {

@@ -15,7 +15,7 @@ const MainPageServices = () => {
               
             <div className='sevices-title'>Почему стоит к нам приехать?</div>           
              <div className='services-container'>
-                <div style={{display:'flex'}}>
+                <div style={{display:'flex'}} className='services-container-2'>
                     <div className='image-container'>
                         <div className='service-btn-div'>
                             <button className='service-get-more' 
@@ -53,8 +53,8 @@ const MainPageServices = () => {
                                 }}>Подробнее
                             </button>
                         </div>
-                        <p className='title-image'>Спорт-зал</p>
                         <img className='services-image' src={gym}/>
+                        <p className='title-image'>Спорт-зал</p>
                     </div>
                 </div>
             </div>

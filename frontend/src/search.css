@@ -14,8 +14,7 @@
 
 .wr-search{
     display: flex;
-}
-  
+} 
 
 .title-parameters{
     text-align: center;
@@ -97,8 +96,8 @@
 }
 
 .room-info{
-    margin-left: 20px;
-    width: 380px;
+    margin-left: 30px;
+    width: 370px;
     float: left;
     height: 100%;
 }
@@ -165,6 +164,86 @@
 }
 
 .buttons-more-container{
-    position: absolute;
+    margin-top: 20px;
+    position: relative;
     bottom: 0;
 }
+
+
+@media (max-width: 568px){
+  
+    .wr-search{
+        display: grid;
+        margin-right: 0px !important;
+     } 
+     .search{
+         margin: auto;
+         margin-top: 175px;
+         width: 80vw;
+     }
+     .room-in-search{
+        max-width: 99vw;
+        box-shadow: none;
+        height: 640px;
+        margin-bottom: 20px;
+      }
+     .search-title{
+        display: grid;
+        margin-bottom: 0px;
+        margin-top: 0px;
+         
+     }
+
+     .room-main-photo{
+        padding-top: 10px;
+        width: 100vw;
+        max-width: 99vw;
+        margin: auto;
+     }
+     .rooms-image-active{
+        height:20vw;  
+        width: 20vw; 
+     }
+
+     .bg-image{
+        width: 95vw;
+        height: 20vw; 
+     }
+     .room-short-info{
+        width: 90%;
+     }
+     .rooms-image{
+        height:20vw; 
+        width: 20vw; 
+     }
+
+     .room-price {
+        display: block !important;
+     }
+
+     .price-wr{
+        display: flex;
+     }
+     .price-wr svg{
+        margin-left: 0px !important;
+     }
+
+     .info-icons{
+        flex-direction: column; 
+     }
+
+     .room-info-div{
+        width: 90vw;
+        margin-right: 0px !important;
+     }
+     .room-title{
+        width: 80vw;
+     }
+     .room-info{
+        max-width: 97vw;
+        float: none;
+     }
+     .room-photos{
+        max-width: 97vw;
+     }
+ }

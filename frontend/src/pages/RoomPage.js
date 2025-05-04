@@ -50,7 +50,7 @@ const RoomPage =  () => {
                         <h2>{room.title}</h2>
                         
                     </div>
-                <img src={`http://176.196.11.180:9001/${room.image[0].image}`} 
+                <img src={`http://176.196.11.180:9000/${room.image[0].image}`} 
                 style={{height:'100vh', marginLeft:"20%"}}/>                
                     <div className='line' style={{marginTop:"50px"}}></div>
 
@@ -59,12 +59,12 @@ const RoomPage =  () => {
                 <div className='room-page-line'></div>
             
             <div className='room-page-bg-image'>
-                <img src={`http://176.196.11.180:9001/${room.image[0].image}`}/>    
+                <img src={`http://176.196.11.180:9000/${room.image[0].image}`}/>    
             </div>
 
             <div className='room-info-container'>
                 <div className='room-page-image-info'>
-                    <img src={`http://176.196.11.180:9001/${room.image[1].image}`}/>
+                    <img src={`http://176.196.11.180:9000/${room.image[1].image}`}/>
                 </div>
 
                 <div className='room-page-info' style={{marginBottom:'20px'}}>
@@ -87,7 +87,7 @@ const RoomPage =  () => {
                     <div className='go-to-booking'> 
                         {booking ?
                         <button className='go-booking' 
-                            onClick={() => navigate('/booking')}>
+                            onClick={() => navigate(`/room/${room.id}/booking`)}>
                             Перейти к бронированию</button>
                         :
                         <button className='go-booking' onClick={() =>  navigate(-1)}>Выбрать дом</button>}
@@ -145,7 +145,7 @@ const RoomPage =  () => {
                     <div class="carousel-inner">
                         
                                  <div class="carousel-item active">
-                                    <img src={`http://176.196.11.180:9001/${room.image[4].image}`} class="d-block w-100 h-400" style={{height:'400px'}} alt="..."/>
+                                    <img src={`http://176.196.11.180:9000/${room.image[4].image}`} class="d-block w-100 h-400" style={{height:'400px'}} alt="..."/>
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>{room.image[4].title}</h5>
                                         <p>{room.image[4].info}</p>
@@ -153,7 +153,7 @@ const RoomPage =  () => {
                                     </div>
                                 
                                     <div class="carousel-item">
-                                    <img src={`http://176.196.11.180:9001/${room.image[2].image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
+                                    <img src={`http://176.196.11.180:9000/${room.image[2].image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>{room.image[2].title}</h5>
                                         <p>{room.image[2].info}</p>
@@ -161,7 +161,7 @@ const RoomPage =  () => {
                                     </div>   
                                     
                                     <div class="carousel-item">
-                                    <img src={`http://176.196.11.180:9001/${room.image[3].image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
+                                    <img src={`http://176.196.11.180:9000/${room.image[3].image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>{room.image[3].title}</h5>
                                         <p>{room.image[3].info}</p>

@@ -40,9 +40,9 @@ const MainPage = observer(() => {
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-                <div class="carousel-inner"  style={{width:'400px', height:'450px'}}>
+                <div class="carousel-inner"style={{width:'400px', height:'450px'}}>
                     <div class="carousel-item active">
-                    <img src={car2} class="d-block w-100" alt="..."/>
+                    <img src={car2} class="d-block w-100" alt="..." />
                     </div>
                     <div class="carousel-item">
                     <img src={car4} class="d-block w-100" alt="..."/>
@@ -68,12 +68,15 @@ const MainPage = observer(() => {
                     Уникальное расположение вдали от города, стильный интерьер и все удобства 
                     дают возможность расслабиться и получить качественный отдых
                 </div>
-                    <button onClick={() => history('/search')} className='caurosel-btn' style={{marginTop:'20px',fontSize:'16px'}} >Перейти к просмотру домов</button>
+                    <div className='wr-bottom-btn-descr'>
+                     <button onClick={() => history('/search')} className='caurosel-btn' style={{marginTop:'20px',fontSize:'16px'}} >Перейти к просмотру домов</button>
+                    </div>
             </div>
          </div>
     
         <div className="container-for-line"> <div className='line'></div></div>
-         <MainPageServices  />
+        { <MainPageServices  />
+        }
         
         <Bot/>
         </div>

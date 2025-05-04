@@ -14,7 +14,7 @@ const Information = ({show, onHide, message}) => {
             </Modal.Header>
            
             <Modal.Footer>
-                <Button onClick={e => navigate('/')}> Закрыть</Button>
+                <Button onClick={e => window.location.reload()}> Закрыть</Button>
 
             </Modal.Footer>
             </Modal>

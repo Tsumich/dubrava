@@ -101,12 +101,30 @@ class AdminController{
                 {IsPaid: true},
                 {
                     where: {
-                    id: bookingId
+                        id: bookingId 
                     }
                 }
             )
         )
         return res.json(payment)
+    }
+
+    async setConfirmed(req, res) {
+        let {userId, bookingId} = req.body
+        const confirmed = 
+            await Booking.update(
+                {
+                    confirmed: true,
+                    userId: userId
+                },
+                {
+                    where: {
+                        id: bookingId
+                    }
+                }
+            )
+        
+        return res.json(confirmed)
     }
     
     async registration (req, res){

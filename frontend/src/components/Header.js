@@ -42,7 +42,7 @@ const Header = () => {
             </div>
             {isAuth ? <div>
                 <button className='header-button' onClick={(() => {
-                    navigate('/profile')
+                    navigate('/admin/profile')
                 })}>Профиль</button>
                 <button className='header-button' onClick={onClickLogout}>Выйти</button>
             </div>

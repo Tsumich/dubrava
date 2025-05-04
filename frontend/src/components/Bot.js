@@ -17,8 +17,8 @@ const Bot = () => {
             {show == true ?
 
             <div>
-                <div style={{width:"100%"}}>
-                    <Button
+                <div>
+                    <Button className='chat-bot-close-btn'
                     style={{border:'none', backgroundColor:'#fff' }}
                     onClick={() => setShow(false)}><img src={cansel}/></Button>
                 </div>

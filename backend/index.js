@@ -6,6 +6,7 @@ const router = require('./routes/routes')
 const path = require('path')
 const https = require("https");
 const fs = require("fs");
+require('dotenv').config()
 
 const app = express()
 app.use(express.json())
@@ -14,24 +15,20 @@ app.use(cors())
 //app.use(cors({ origin: 'https://dubrava-tb2h.vercel.app' }));
 app.use('/api', router)
 
-const options = {
-    key: fs.readFileSync("server.key"),
-    cert: fs.readFileSync("server.cert"),
-};
 
 const start = async() => {
-    // try{
-    //     await sequelize.authenticate()
-    //     await sequelize.sync()
-    //     app.listen(9000, () => console.log('Server listen 9000 port'))
-    // }catch(err){
-    //     console.log(err)
-    // }
-    await sequelize.authenticate()
-     await sequelize.sync()
-    https.createServer(options, app)
-        .listen(9000, function (req, res) {
-            console.log("Server started at port 9000");
-    });
+    try{
+        await sequelize.authenticate()
+        await sequelize.sync()
+        app.listen(9000, () => console.log('Server listen 9000 port'))
+    }catch(err){
+        console.log(err)
+    }
+    // await sequelize.authenticate()
+    //  await sequelize.sync()
+    // https.createServer(options, app)
+    //     .listen(9000, function (req, res) {
+    //         console.log("Server started at port 9000");
+    // });
 }
 start()

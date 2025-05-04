@@ -52,7 +52,7 @@ const Request = () => {
                     <th scope="col">Дата выезда</th>
                     <th scope="col">Имя клиента</th>
                     <th scope="col">Номер клиента</th>
-                    <th scope="col">Количество дней проживания</th>
+                    <th scope="col">Действие</th>
                     </tr>  
                 </thead>
                 <tbody>
@@ -70,7 +70,6 @@ const Request = () => {
             </table>
 
         </div>
-        
     </div> </>
     );
 }

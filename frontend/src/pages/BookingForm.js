@@ -9,6 +9,9 @@ import { createBooking } from '../axios';
 import PersonalDataDoc from '../components/modal/PersonalDataDoc';
 import Information from '../components/modal/Information';
 //aaaa
+
+import InputMask from 'react-input-mask';
+
 const BookingForm = () => {
     const navigate = useNavigate()
     const [isLoading, setLoading] = useState(false);
@@ -131,8 +134,15 @@ const BookingForm = () => {
                     <input onChange={e => setName(e.target.value)} required/>
                 </div>
                 <div className='client-number-line'>
+            
                     <div>Телефон:</div>
-                    <input onChange={e => setPhoneNumber(e.target.value)} required/>
+                    <InputMask
+                        mask="+7(999) 999-99-99"
+                        placeholder="+7(---) --- -- --"
+                        value={phoneNumber}
+                        onChange={e => setPhoneNumber(e.target.value)}
+                        required
+                    />
                 </div>
 
                 <div className='client-title' style={{

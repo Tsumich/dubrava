@@ -8,7 +8,7 @@ body {
 .chat-bot-container{
   position:fixed;
   bottom: 20px;
-  right: 10px;
+  right:  10px;
 }
 
 
@@ -313,4 +313,95 @@ body {
     height:70vh ;
   }
 
+  .chat-bot-close-btn{
+    position: relative;
+   bottom: -40px;
+   z-index: 999;
+   left: 80%;
+ }
+
+  @media (max-width: 568px){
+    .container-center{
+      display: block;
+      height: 700px;
+    }
+    .carousel-item img{
+      width: 100px;
+    }
+    .services-image{
+      width: 90vw;
+      height: 130px ;
+      object-fit: cover; 
+      object-position: 20% 0;
+
+    }
+  
+    .image-container{
+      min-width: none ;
+      width: 50px;
+      height: 130px ;
+      margin-bottom: 50px;
+    }
+    .services-container{
+      width: 100vw;
+      margin: 0px !important;
+    }
+    .services-container-2{
+      display: block !important;
+    }
+    .service-btn-div{
+        height: 130px;
+    }
+    .service-get-more{
+       bottom: -40px;
+    }
+    .title-image{
+      font-size: 20px;
+      width: 90vw;
+    }
+
+    .carousel-inner{
+      width: 100px;
+      height: 100px;
+    }
+
+    .carousel-inner div img{
+      width: 100vw !important;
+    }
+
+    .chat-bot-container img{
+      margin: 0px !important;
+    }
+
    
+
+    .text-carousel-bottom{
+      visibility: hidden;
+      height: 0px;
+    }
+
+    .text-carousel-main{
+      font-size: 18px;
+      width: 100%;
+      margin-top: 60px;
+      margin-bottom: 50px;
+    }
+
+    .services-bg{
+      height: 140px !important;
+    }
+
+    .wr-bottom-btn-descr{
+      width: 100%;
+    }
+    .caurosel-btn{
+      display: block !important; 
+      margin: 0 auto !important; 
+      margin-bottom: 0;
+    }
+
+    .sevices-title{
+      margin-left: 10px;
+      width: 90vw !important;
+    }
+  }

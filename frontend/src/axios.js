@@ -4,7 +4,7 @@ const instance = axios.create({
 	//baseURL: 'http://192.168.0.124:9000/'
     //baseURL:'http://176.197.167.29:9002/'
     //baseURL: 'http://192.168.0.128:9000/'
-    baseURL: 'https://176.196.11.180:9000/'
+    baseURL: 'http://176.196.11.180:9000/'
     //baseURL: 'http://localhost:9000/'
 }) 
 
@@ -47,12 +47,18 @@ export const getEnd = async (start, end) => {
 }
 
 export const createBooking = async (form) => {
+    console.log(form)
     const {data} = await instance.post('api/booking/create', form)
     return data
 }
 
 export const createPayment = async (form) => {
     const {data} = await instance.post('api/payment/create', form)
+    return data
+}
+
+export const setConfirmed = async (form) => {
+    const {data} = await instance.post('api/booking/confirmed', form)
     return data
 }
 

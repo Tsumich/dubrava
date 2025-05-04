@@ -88,7 +88,7 @@ const Booking = sequelize.define('booking', {
         type: DataTypes.STRING
     },
     phoneNumber: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     },
     price: {
         type: DataTypes.DOUBLE
@@ -136,6 +136,9 @@ Image.belongsTo(Room)
 
 Booking.hasMany(Guest, {as: 'guest'})
 Guest.belongsTo(Booking)
+
+User.hasMany(Booking, {as: 'booking'})
+Booking.belongsTo(User)
 
 Room.hasMany(Booking, {as:'booking'})
 Booking.belongsTo(Room)

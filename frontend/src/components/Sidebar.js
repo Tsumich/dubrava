@@ -12,10 +12,11 @@ const Sidebar = () => {
     return (
         <aside className={expanded ? 'sidebar-expanded' : 'sidebar'}>
             <div className={expanded ? 'profile-expanded' : 'profile'}
-             onClick={() => setExpanded(!expanded)}>
+             onMouseEnter={() => setExpanded(!expanded)}
+             onMouseLeave={() => setExpanded(!expanded)}>
                 {expanded ? <p className='profile-title' >{data ? data.login : ''}</p> : <></>}
                 <div className='line' style={{backgroundColor:'#fff'}}></div>
-                <div className='profile-el' onClick={() => navigate('/req')}>
+                <div className='profile-el' onClick={() => navigate('/admin/req')}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="#7c7575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 8V16" stroke="#7c7575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -23,7 +24,7 @@ const Sidebar = () => {
                     </svg>
                     {expanded ? <p>Заявки</p> : <></>}
                 </div>
-                <div className='profile-el' onClick={() => expanded ? navigate('/bookings') : ''}>
+                <div className='profile-el' onClick={() => expanded ? navigate('/admin/bookings') : ''}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 10V8C6 4.69 7 2 12 2C17 2 18 4.69 18 8V10" stroke="#7c7575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 18.5C13.3807 18.5 14.5 17.3807 14.5 16C14.5 14.6193 13.3807 13.5 12 13.5C10.6193 13.5 9.5 14.6193 9.5 16C9.5 17.3807 10.6193 18.5 12 18.5Z" stroke="#7c7575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
