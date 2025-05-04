@@ -17,7 +17,7 @@ instance.interceptors.request.use((config) => {
 export const searchRooms = async (fields) => {
 	//console.log(fields)
     const {data} = await instance.post('api/rooms/search/', fields)
-    console.log(data)
+    console.log('data')
     return data;
 }
 
