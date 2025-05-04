@@ -33,7 +33,11 @@ const Rooms = ({rooms}) => {
             {console.log(roomEmpty)}
             {(isRoomLoading ? [...Array(5)] : rooms).map((room, index) =>  //использует массив анд-ов если не будет постов
                 isRoomLoading ? ( // загрузился ли пост?
-            < ></> // пока пост не подгрузилсся рендерится скелет
+            < >
+                <div class="spinner-grow" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </> // пока пост не подгрузилсся рендерится скелет
             ) : (<Room   key={index} room={room}/>))
             }
                 

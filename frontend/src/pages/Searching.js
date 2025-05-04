@@ -75,8 +75,9 @@ const Searching = () => {
             setVacancies(temp) 
         })
     }
-
+    
     return (
+
         <div className='wr-search'>
             <div className='search'>
                 <h5 className='title-parameters'>Параметры</h5>
@@ -139,7 +140,6 @@ const Searching = () => {
             </div>
 
             <div className='rooms'>
-                
            
            { !showCalendar ? <Rooms rooms={vacancies?vacancies:rooms.items}/> :
              <CalendarBooking startDate={checkIn} rooms={rooms}/>
@@ -150,7 +150,8 @@ const Searching = () => {
             <Bot/>
             
         </div>
-    );
+    ) 
+    
 }
 
 export default Searching;
