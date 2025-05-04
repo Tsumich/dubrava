@@ -29,7 +29,7 @@ const Room  = ({room}) => {
      }
 
     const URL = 'https://dubrava789.onrender.com/'
-    const mainPhotoPath = `http://localhost:9000/${mainImage}`
+    const mainPhotoPath = `${URL}${mainImage}`
 
     const info = useRef('')
     info.current = room.info ? room.info.substr(0, 123) + ' ...' : ''
@@ -40,7 +40,7 @@ const Room  = ({room}) => {
             
              <div className='room-photos'>    
                 {
-                <Image className='room-main-photo' src={`http://176.196.11.180:9000/${mainImage}`}></Image> 
+                <Image className='room-main-photo' src={`${URL}${mainImage}`}></Image> 
                 }     
 
                 <div className='bg-image'></div>
