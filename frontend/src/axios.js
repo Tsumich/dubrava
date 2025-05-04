@@ -4,7 +4,8 @@ const instance = axios.create({
 	//baseURL: 'http://192.168.0.124:9000/'
     //baseURL:'http://176.197.167.29:9002/'
     //baseURL: 'http://192.168.0.128:9000/'
-    baseURL: 'http://176.196.11.180:9000/'
+    //baseURL: 'http://176.196.11.180:9000/'
+    baseURL: 'https://dubrava789.onrender.com/'
     //baseURL: 'http://localhost:9000/'
 }) 
 
@@ -16,6 +17,7 @@ instance.interceptors.request.use((config) => {
 export const searchRooms = async (fields) => {
 	//console.log(fields)
     const {data} = await instance.post('api/rooms/search/', fields)
+    console.log(data)
     return data;
 }
 
