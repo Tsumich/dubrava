@@ -8,6 +8,7 @@ import { setRoom } from '../redux/slices';
 import { isAuthSelector } from '../redux/slicesAuth';
 
 const Room  = ({room}) => {
+    console.log(room)
     const [mainImage, setMainImage] = useState(room.image[0].image)
     const [activePhoto, setActivePhoto] = useState(room.image[0].id)
     const dispatch = useDispatch()
@@ -33,7 +34,6 @@ const Room  = ({room}) => {
 
     const info = useRef('')
     info.current = room.info ? room.info.substr(0, 123) + ' ...' : ''
-     
     return (
         
         <div className='room-in-search'>
@@ -124,7 +124,7 @@ const Room  = ({room}) => {
                         
             </div>  
         </div> 
-    );
+    )
 }
 
 export default Room;

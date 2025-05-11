@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Room from './Room';
 import line from '../static/line.png'
-import RoomSkelet from './RoomSkelet'
 
 const Rooms = ({rooms}) => {
-    const [activePhotos, setActivePhotos] = []
-
-    const isRoomLoading = rooms.status == 'loading'
+    const [isRoomLoading, setIsRoomLoading] = useState(rooms.status == 'loading')
     const roomEmpty = {
         id: '222',
         title: '',
@@ -30,15 +27,15 @@ const Rooms = ({rooms}) => {
                 <img className='search-line' src={line}></img>
             </div>    
             </div>   
-            {console.log(roomEmpty)}
-            {(isRoomLoading ? [...Array(5)] : rooms).map((room, index) =>  //использует массив анд-ов если не будет постов
-                isRoomLoading ? ( // загрузился ли пост?
-            < >
+           
+            {isRoomLoading ? 
                 <div class="spinner-grow" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-            </> // пока пост не подгрузилсся рендерится скелет
-            ) : (<Room   key={index} room={room}/>))
+                  : rooms.map((room, index) =>
+              (<Room   key={index} room={room}/>)
+            ) 
+              
             }
                 
             
@@ -47,3 +44,23 @@ const Rooms = ({rooms}) => {
 }
 
 export default Rooms;
+
+// {(isRoomLoading ? [...Array(5)] : rooms).map((room, index) =>  //использует массив анд-ов если не будет постов
+//     isRoomLoading ? ( // загрузился ли пост?
+// < >
+//     <div class="spinner-grow" role="status">
+//         <span class="visually-hidden">Loading...</span>
+//     </div>
+// </> // пока пост не подгрузилсся рендерится скелет
+// ) : (<Room   key={index} room={room}/>))
+// }
+
+
+// {!isRoomLoading ? 
+             
+//     rooms.map((index, room)=> <Room   key={index} room={room}/>)
+//          :
+//         <div class="spinner-grow" role="status">
+//             <span class="visually-hidden">Loading...</span>
+//         </div>
+//     }
