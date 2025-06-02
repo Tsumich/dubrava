@@ -125,7 +125,8 @@ const BookingForm = () => {
                 </div>
                 <div className='client-fio-line'>
                     <div>Фамилия:</div>
-                    <input className='input-guest' onChange={e => {
+                    <input className='input-guest' 
+                        onChange={e => {
                         setLastName(e.target.value)
                         // if(imGuest == true) {
                         //     console.log(guests[0])

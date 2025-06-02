@@ -35,7 +35,7 @@ const Request = () => {
     return (<><Sidebar/> 
     <div className='admin-tables'>
          
-       <div className='container mt-5'>
+       <div className='container mt-2'>
         <h1 className='admin-table-title'>Заявки на бронирование </h1>
         
             {request.length > 0 ?

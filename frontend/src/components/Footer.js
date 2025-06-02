@@ -18,9 +18,9 @@ const Footer = ({showFooter}) => {
                     <div style={{ fontSize:'20px', width:'120px', margin:"auto"}}>DUBRAVA</div>
                 </div>
                 <div style={{fontSize:'12px', marginLeft:"20px"}}>
-                    <p>д. Ляпки ул. Центральная , 1г</p>
-                    <p>+7 983 253 1000</p>
-                    <p>grk.lukomorye@yandex.ru</p>
+                    <p>г.Бирюзовск, ул. Янтарный Овраг, д. 5</p>
+                    <p>+7-983-253-1000</p>
+                    <p>dubravabase@yandex.ru</p>
                     <div> © DudravaBase, 2025</div>
                 </div>
             </div>

@@ -79,7 +79,7 @@ class AdminController{
                                         bookingId: booking.id
                             })
                             })}
-                            return res.json('Запись на бронирование создана')
+                            return res.json('Запись на бронирование создана, ожидайте звонок менеджера')
                             }
                             
                         )

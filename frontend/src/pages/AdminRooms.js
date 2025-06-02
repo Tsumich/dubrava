@@ -19,7 +19,7 @@ const AdminRooms =  () => {
     <RoomInfo show={editInfo} room={roomRef.current} edit={edit.current}
         onHide={() => setEditInfo(false)}></RoomInfo>
     <div className='admin-tables'>
-       <div className='container mt-5' style={{height:'50vh'}}>
+       <div className='container mt-2' style={{height:'50vh'}}>
         <h1 className='admin-table-title'> Список домов </h1>
 
         

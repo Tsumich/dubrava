@@ -6,7 +6,8 @@ const instance = axios.create({
     //baseURL: 'http://192.168.0.128:9000/'
     //baseURL: 'http://176.196.11.180:9000/'
     //baseURL: 'https://dubrava789.onrender.com/'
-    baseURL: 'http://176.196.11.180:9000/'
+    //baseURL: 'http://176.196.11.180:9000/'
+    baseURL: 'https://dubrava789.onrender.com'
 }) 
 
 instance.interceptors.request.use((config) => {

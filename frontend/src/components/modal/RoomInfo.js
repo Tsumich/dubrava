@@ -157,7 +157,7 @@ return (
             </Form>
         </Modal.Body>
         <Modal.Footer>
-            <Button onClick={onHide}> Закрыть</Button>
+            <Button onClick={onHide} className='btn-submit'> Закрыть</Button>
         </Modal.Footer>
         </Modal> 
             }

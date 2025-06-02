@@ -18,34 +18,40 @@ const AdminUsers = () => {
     }, []);
 
     return (
-        <div className='admin-tables'>
-            <Button className='booking-admin-create' onClick={() => setCreateUser(true)}>Создать пользователя</Button>
+        <div>
             <Sidebar/>
             <CreateUser show={createUser} onHide={() => setCreateUser(false)}></CreateUser>
-
-            <table className="table">
-                <thead>
-                    <tr className='booking-table'>
-                    <th scope="col">Имя пользователя</th>
-                    <th scope="col">Роль</th>
-                    </tr> 
-                    {users?.map((user) => {
-                        return(
+        
+            <div className='admin-tables'>
+                <div style={{paddingLeft: '30px', paddingTop:'20px'}}>
+                    <h1 className='admin-table-title'>Пользователи </h1>
+                    <Button className='booking-admin-create' onClick={() => setCreateUser(true)}>Создать пользователя</Button>    
+                </div>
+                
+                <table className="table">
+                    <thead>
                         <tr className='booking-table'>
-                            <td>
-                                {user?.login}
-                            </td>
-                            <td>
-                                {user?.role}
-                            </td>
-                        </tr>)
-                    })} 
-                </thead>
-                <tbody>
+                        <th scope="col">Имя пользователя</th>
+                        <th scope="col">Роль</th>
+                        </tr> 
+                        {users?.map((user) => {
+                            return(
+                            <tr className='booking-table'>
+                                <td>
+                                    {user?.login}
+                                </td>
+                                <td>
+                                    {user?.role}
+                                </td>
+                            </tr>)
+                        })} 
+                    </thead>
+                    <tbody>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
+            </div>
         </div>
     );
 }

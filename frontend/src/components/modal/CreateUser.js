@@ -28,8 +28,23 @@ const CreateUser = ({show, onHide}) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                <div class="dropdown">
-                        <button style={{marginBottom:'10px'}} class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="dropdown" style={{display:'flex'}}>
+                    <div style={{marginRight:'10px'}}>
+                        <div style={{display:'flex', marginBottom:"10px"}}>
+                            <div style={{width:"50px"}}>Логин</div>
+                            <input value={login} 
+                                onChange={(e) => {setLogin(e.target.value)}}>
+                            </input>
+                        </div>
+                        <div style={{display:'flex'}}>
+                            <div style={{width:"50px"}}>Пароль</div>
+                            <input value={password} 
+                                onChange={(e) => setPassword(e.target.value)}>
+                            </input>
+                        </div>
+                    </div>
+                    <div>
+                         <button style={{marginBottom:'10px'}} class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                             {!role.length ? "Роль" : role}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
@@ -37,9 +52,8 @@ const CreateUser = ({show, onHide}) => {
                                return  <li  onClick={() => setRole(role)}><a class="dropdown-item  " href="#">{role}</a></li>
                             })}
                         </ul>
-                        <div>Логин<input value={login} onChange={(e) => {setLogin(e.target.value)}} ></input></div>
-                        <div>Пароль<input value={password} onChange={(e) => setPassword(e.target.value)} ></input></div>
-
+                    </div> 
+                    
                     </div>
 
                     
@@ -48,8 +62,8 @@ const CreateUser = ({show, onHide}) => {
 
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={onHide}> Закрыть</Button>
-                <Button onClick={addUser}> Создать</Button>
+                <Button className='btn-submit' onClick={onHide}> Закрыть</Button>
+                <Button className='btn-submit' onClick={addUser}> Создать</Button>
 
             </Modal.Footer>
             </Modal>

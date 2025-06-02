@@ -38,7 +38,7 @@ const Header = () => {
                         }
                     }}
                  >Услуги</button>
-                <button className='header-button'>Проживание</button>
+                <button className='header-button' onClick={()=> navigate('/search')}>Проживание</button>
             </div>
             {isAuth ? <div>
                 <button className='header-button' onClick={(() => {
