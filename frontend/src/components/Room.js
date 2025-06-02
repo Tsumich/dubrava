@@ -65,7 +65,7 @@ const Room  = ({room}) => {
                             width={90} 
                             height={80} 
                             style={{zIndex:"1000"}}
-                            src={`http://176.196.11.180:9000/${room.image[2]?.image}`}></Image>
+                            src={`${URL}/${room.image[2]?.image}`}></Image>
                 </div>
             </div>
 

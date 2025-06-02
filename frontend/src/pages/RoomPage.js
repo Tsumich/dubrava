@@ -145,7 +145,7 @@ const RoomPage =  () => {
                     <div class="carousel-inner">
                         
                                  <div class="carousel-item active">
-                                    <img src={`http://176.196.11.180:9000/${room?.image[4]?.image}`} class="d-block w-100 h-400" style={{height:'400px'}} alt="..."/>
+                                    <img src={`${URL}/${room?.image[4]?.image}`} class="d-block w-100 h-400" style={{height:'400px'}} alt="..."/>
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>{room?.image[4]?.title}</h5>
                                         <p>{room?.image[4]?.info}</p>
@@ -153,7 +153,7 @@ const RoomPage =  () => {
                                     </div>
                                 
                                     <div class="carousel-item">
-                                    <img src={`http://176.196.11.180:9000/${room?.image[2]?.image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
+                                    <img src={`${URL}/${room?.image[2]?.image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>{room?.image[2]?.title}</h5>
                                         <p>{room?.image[2]?.info}</p>
@@ -161,7 +161,7 @@ const RoomPage =  () => {
                                     </div>   
                                     
                                     <div class="carousel-item">
-                                    <img src={`http://176.196.11.180:9000/${room?.image[3]?.image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
+                                    <img src={`${URL}/${room?.image[3]?.image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>{room?.image[3]?.title}</h5>
                                         <p>{room?.image[3]?.info}</p>
