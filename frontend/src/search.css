@@ -171,6 +171,12 @@
     bottom: 0;
 }
 
+.spinner-room-loading{
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
 
 @media (max-width: 568px){
   

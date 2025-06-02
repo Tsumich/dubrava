@@ -77,7 +77,7 @@ const Searching = () => {
             setVacancies(temp) 
         })
     }
-    
+
     return (
 
         <div className='wr-search' style={{height:'100%'}}>
@@ -144,11 +144,9 @@ const Searching = () => {
             </div>
 
             <div className='rooms'>
-           
-           { !showCalendar ? <Rooms rooms={vacancies?vacancies:rooms.items}/> :
-             <CalendarBooking startDate={checkIn} rooms={rooms}/>
-            }
-
+                { !showCalendar ? <Rooms rooms={vacancies?vacancies:rooms.items}/> :
+                <CalendarBooking startDate={checkIn} rooms={rooms}/>
+                }
             </div>
 
             <Bot/>

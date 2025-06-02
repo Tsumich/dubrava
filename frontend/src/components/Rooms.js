@@ -5,6 +5,7 @@ import line from '../static/line.png'
 
 const Rooms = ({rooms}) => {
     const [isRoomLoading, setIsRoomLoading] = useState(rooms.status == 'loading')
+    const roomsStatus = useSelector(state => state?.rooms?.rooms?.status)
     const roomEmpty = {
         id: '222',
         title: '',
@@ -13,7 +14,6 @@ const Rooms = ({rooms}) => {
             id: '33'
         }
     }
-
     return (
         <div>      
             <div className='search-title'> 
@@ -27,11 +27,11 @@ const Rooms = ({rooms}) => {
                 <img className='search-line' src={line}></img>
             </div>    
             </div>   
-           
-            {isRoomLoading ? 
+            {isRoomLoading || roomsStatus == 'pending' ? 
+            <div className='spinner-room-loading'>
                 <div class="spinner-grow" role="status">
                     <span class="visually-hidden">Loading...</span>
-                </div>
+                </div></div>
                   : rooms.map((room, index) =>
               (<Room   key={index} room={room}/>)
             ) 
