@@ -24,8 +24,8 @@ const RoomPage =  () => {
     const [currentRoom, setCurrentRoom] = useState()
 
     let meels = []
-    //const URL = 'https://dubrava789.onrender.com/'
-    const URL = 'http://176.196.11.180:9000/'
+    const URL = 'https://dubrava789.onrender.com/'
+    //const URL = 'http://176.196.11.180:9000/'
  
     if(!loading && room){
         if(loading && room.meels){

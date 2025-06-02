@@ -28,8 +28,8 @@ const Room  = ({room}) => {
         history('/room/' + room.id)
      }
 
-    //const URL = 'https://dubrava789.onrender.com/'
-    const URL = 'http://176.196.11.180:9000/'
+    const URL = 'https://dubrava789.onrender.com/'
+    //const URL = 'http://176.196.11.180:9000/'
  
     const info = useRef('')
     info.current = room.info ? room.info.substr(0, 123) + ' ...' : ''
