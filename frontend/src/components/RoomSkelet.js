@@ -7,24 +7,22 @@ import { useDispatch } from 'react-redux';
 import { setRoom } from '../redux/slices';
 
 const RoomSkelet  = ({room}) => {
-    console.log('sdfsdfdf')
     const [mainImage, setMainImage] = useState(room.image[0].image)
     const [activePhoto, setActivePhoto] = useState(room.image[0].id)
+
     const dispatch = useDispatch()
+    const history = useNavigate()
+
     const changeImage = (index, id) => {
-          setMainImage(room.image[index].image)
-          setActivePhoto(id)
-  
-     }
-     const mainPhotoPath = `http://localhost:9000/${mainImage}`
-     const history = useNavigate()
-
-
-     console.log(room.image)
-     const goToRoomPage = () =>{
+        setMainImage(room.image[index].image)
+        setActivePhoto(id)
+    }
+    
+    const goToRoomPage = () =>{
         dispatch(setRoom(room))
         history('/room/' + room.id)
-     }
+    }
+
     return (
         <div className='room-in-search'>
             <div className='room-photos'>    

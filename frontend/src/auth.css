@@ -15,6 +15,21 @@
     text-align: center;
 }
 
+@media (max-width: 568px) {
+    .auth-wr{
+        margin: auto;
+        margin-top: 50%;
+    }
+
+    .auth-main{
+        width: 90%;
+    }
+
+    .auth-wr input{
+        width: 8cap;
+    }
+}
+
 input {
     display: block;
     width: 100%;

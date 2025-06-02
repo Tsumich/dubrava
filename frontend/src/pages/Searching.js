@@ -9,6 +9,7 @@ import { searchRooms } from '../axios';
  import { setBooking } from '../redux/slices';
 import Bot from '../components/Bot';
 import Footer from '../components/Footer';
+import { useLayoutEffect } from 'react';
 
 const Searching = () => {
     const [checkIn, setCheckIn] = useState(new Date())
@@ -21,12 +22,13 @@ const Searching = () => {
     const [vacancies, setVacancies] = useState()
     const [showCalendar, setShowCalendar] = useState(false)
  
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    }, [ ]);
 
     let dayDifferent = useRef()
-    console.log(checkIn, checkOut)
     if((checkIn && checkOut) && (checkOut > checkIn)){
         dayDifferent.current = Math.round((checkOut.setHours(0) - checkIn.setHours(0)) / (1000 * 60 * 60 * 24))
-        console.log(dayDifferent)
     }
 
     const submitSearch = () => {
@@ -78,7 +80,7 @@ const Searching = () => {
     
     return (
 
-        <div className='wr-search'>
+        <div className='wr-search' style={{height:'100%'}}>
             <div className='search'>
                 <h5 className='title-parameters'>Параметры</h5>
                 <table>
@@ -87,8 +89,9 @@ const Searching = () => {
                         <td>
                             <div> Заезд: </div>
                         </td>
-                        <td>
+                        <td className='calendar-input'>
                             <Calendar 
+                            locale='ru'
                             style={{fontSize:'15px', 
                                     height:'30px',
                                     maxWidth:'200px'}}
@@ -103,8 +106,9 @@ const Searching = () => {
                         <td>
                             <div> Выезд: </div>
                         </td>
-                        <td>
+                        <td className='calendar-input'>
                         <Calendar 
+                        locale='ru'
                         value={checkOut} 
                         showIcon 
                         onChange={(e) => {
@@ -126,8 +130,8 @@ const Searching = () => {
                         <td  style={{width:'80px'}}>
                             Гостей: 
                         </td>
-                        <td>
-                            <input value={guestsAmount} type='number' min="0" max="10" onChange={(e)=>setGuestsAmount(e.target.value)}></input>
+                        <td  style={{height:'40px'}}>
+                            <input value={guestsAmount} type='number' min="1" max="10" onChange={(e)=>setGuestsAmount(e.target.value)}></input>
                         </td>
                     </tr>
 

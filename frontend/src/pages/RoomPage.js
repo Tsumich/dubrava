@@ -22,8 +22,10 @@ const RoomPage =  () => {
     const booking =  useSelector(getBooking)
     const [loading, setLoading] = useState(true)
     const [currentRoom, setCurrentRoom] = useState()
-    let meels = []
 
+    let meels = []
+    //const URL = 'https://dubrava789.onrender.com/'
+    const URL = 'http://176.196.11.180:9000/'
  
     if(!loading && room){
         if(loading && room.meels){
@@ -45,67 +47,60 @@ const RoomPage =  () => {
             <div>loading ... </div> :
             
             <div className='wr-room-page'>
-                <div style={{width:'100%'}} className='banner-room'>
-                    <div className='room-info-banner'>
-                        <h2>{room.title}</h2>
-                        
-                    </div>
-                <img src={`http://176.196.11.180:9000/${room.image[0].image}`} 
-                style={{height:'100vh', marginLeft:"20%"}}/>                
-                    <div className='line' style={{marginTop:"50px"}}></div>
-
-                </div>
+                
             <div className='room-page'>
                 <div className='room-page-line'></div>
             
             <div className='room-page-bg-image'>
-                <img src={`http://176.196.11.180:9000/${room.image[0].image}`}/>    
+                <img src={`${URL}${room?.image[0]?.image}`}/>    
             </div>
 
             <div className='room-info-container'>
+                 
                 <div className='room-page-image-info'>
-                    <img src={`http://176.196.11.180:9000/${room.image[1].image}`}/>
+                    <img src={`${URL}${room?.image[1]?.image}`}/>
                 </div>
 
                 <div className='room-page-info' style={{marginBottom:'20px'}}>
+                    <div className='room-info-banner'>
+                        <h2>{room.title}</h2>
+                    </div>
                 <div className='room-page-info-bg'></div>
                     <div className='room-page-title'>
-                        <h3>{room.title}</h3>
-                    </div>
-                    <div className='room-page-title-line'>
-                        <img src={line} style={{width:"150px", height:'25px'}}/>
-                    </div>
-                
-                    <div className='room-page-desc'>
-                        
-                        <p >{room.info}</p>
-                    </div>
-                     
-                    
-                              
-
-                    <div className='go-to-booking'> 
                         {booking ?
-                        <button className='go-booking' 
-                            onClick={() => navigate(`/room/${room.id}/booking`)}>
-                            Перейти к бронированию</button>
-                        :
-                        <button className='go-booking' onClick={() =>  navigate(-1)}>Выбрать дом</button>}
-                    </div>
-                    {booking ?
                         <p style={{marginTop:"40px", textAlign:'center', fontSize:'19px'}}>
                         Стоимость проживания за {booking.days} сут. {room.price * booking.days} руб
                         </p>
                         :
                         <p style={{marginTop:"40px", textAlign:'center', fontSize:'19px'}}>
                         Стоимость проживания за сутки {room.price} руб
-                        </p>
-                    }  
+                        </p>}
+                    </div>
+                    <div className='room-page-title-line'>
+                        <img src={line} style={{width:"150px", height:'25px'}}/>
+                    </div>
+                
+                    <div className='room-page-desc'>
+                        <p >{room.info}</p>
+                    </div>
+      
+
+                    <div className='go-to-booking'> 
+                        {booking ?
+                        <button className='go-booking' 
+                            onClick={() => navigate(`/room/${room.id}/booking`)}
+                            >
+                            Перейти к бронированию</button>
+                        :
+                        <button className='go-booking' onClick={() =>  navigate(-1)}>Выбрать дом</button>}
+                    </div>
                 </div>
 
             </div>
 
-            <div className='line' style={{marginTop:'70px'}}></div>
+            <div className='room-page-title-line'>
+                <img src={line} style={{width:"150px", height:'25px'}}/>
+            </div>
             <div className='room-meel-wr'> 
                 <div style={{margin:'auto', marginTop:"20px", marginRight:"0"}}> 
             <LazyImage> 
@@ -120,22 +115,27 @@ const RoomPage =  () => {
                     </ul>
                 </div>
             </LazyImage>
-            <div style={{marginTop:'30px'}}> 
-            {room.benefits.split(";").map((benefit) => {
-                 return <div className='benefits'>{benefit}</div>
-            })}
+
+            <div> 
+            <div style={{marginTop:'30px'}} className='benefits-list'> 
+                {room.benefits.split(";").map((benefit) => {
+                    return <div className='benefits'>{benefit}</div>
+                })}
             </div>
-            <div style={{marginTop:'20px'}} >
+            <div style={{marginTop:'20px'}}>
+                <div className='button-go-booking' style={{textAlign:'center'}}>
                     {booking ?
-                    <button  className='go-booking' onClick={() => navigate('/booking')} style={{margin:'auto'}}>
+                    <button  className='go-booking' onClick={() => navigate(`/room/${room.id}/booking`)} style={{margin:'auto'}}>
                         Перейти к бронированию</button>
                         :
                     <button className='go-booking' onClick={() => navigate(-1)} style={{margin:'auto'}}>
                         Выбрать дом</button>}
+                </div>
             </div>
             </div>
-
-                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel"
+                  
+            </div>
+               <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel"
                  style={{width:"650px",marginRight: '4%', marginLeft: '60px'}}>
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -145,26 +145,26 @@ const RoomPage =  () => {
                     <div class="carousel-inner">
                         
                                  <div class="carousel-item active">
-                                    <img src={`http://176.196.11.180:9000/${room.image[4].image}`} class="d-block w-100 h-400" style={{height:'400px'}} alt="..."/>
+                                    <img src={`http://176.196.11.180:9000/${room?.image[4]?.image}`} class="d-block w-100 h-400" style={{height:'400px'}} alt="..."/>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>{room.image[4].title}</h5>
-                                        <p>{room.image[4].info}</p>
+                                        <h5>{room?.image[4]?.title}</h5>
+                                        <p>{room?.image[4]?.info}</p>
                                     </div>
                                     </div>
                                 
                                     <div class="carousel-item">
-                                    <img src={`http://176.196.11.180:9000/${room.image[2].image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
+                                    <img src={`http://176.196.11.180:9000/${room?.image[2]?.image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>{room.image[2].title}</h5>
-                                        <p>{room.image[2].info}</p>
+                                        <h5>{room?.image[2]?.title}</h5>
+                                        <p>{room?.image[2]?.info}</p>
                                     </div>
                                     </div>   
                                     
                                     <div class="carousel-item">
-                                    <img src={`http://176.196.11.180:9000/${room.image[3].image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
+                                    <img src={`http://176.196.11.180:9000/${room?.image[3]?.image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>{room.image[3].title}</h5>
-                                        <p>{room.image[3].info}</p>
+                                        <h5>{room?.image[3]?.title}</h5>
+                                        <p>{room?.image[3]?.info}</p>
                                     </div>
                         </div>
                     </div>
@@ -176,14 +176,36 @@ const RoomPage =  () => {
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
-                    </div>
-                  
-            </div>
-                 
+                </div>  
             </div>      
- 
+ </div>
          </div>
     );
 }
 
 export default RoomPage;
+
+//**
+// 
+// <div style={{width:'100%'}} className='banner-room'>
+{/* <div className='room-info-banner'>
+<h2>{room.title}</h2>
+</div>
+<div className='room-page-images-banner'>
+<img src={`${URL}${room?.image[0]?.image}`} 
+    style={{height:'480px'}}/>
+<div className='room-page-images-column-images'>
+    <img src={`${URL}${room?.image[0]?.image}`} 
+        style={{height:'160px'}}/>
+    <img src={`${URL}${room?.image[0]?.image}`} 
+        style={{height:'160px'}}/>
+    <img src={`${URL}${room?.image[0]?.image}`} 
+        style={{height:'160px'}}/>
+</div>
+
+</div>
+        
+<div className='line' style={{marginTop:"50px"}}></div>
+
+</div> */}
+//  */

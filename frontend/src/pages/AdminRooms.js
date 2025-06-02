@@ -1,5 +1,5 @@
 import Sidebar from '../components/Sidebar';
-import React , {useState, useEffect, useRef} from 'react';
+import React , {useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import RoomInfo from '../components/modal/RoomInfo';
@@ -11,12 +11,15 @@ const AdminRooms =  () => {
     const navigate = useNavigate()
     if(!useSelector(state => state.auth)) navigate('/')
     const [editInfo, setEditInfo] = useState(false)
- 
+    const edit = useRef('')
+
     return (
-        <><Sidebar/>
-        <RoomInfo show={editInfo} room={roomRef.current} onHide={() => setEditInfo(false)}></RoomInfo>
+    <>
+    <Sidebar/>
+    <RoomInfo show={editInfo} room={roomRef.current} edit={edit.current}
+        onHide={() => setEditInfo(false)}></RoomInfo>
     <div className='admin-tables'>
-       <div className='container mt-5'>
+       <div className='container mt-5' style={{height:'50vh'}}>
         <h1 className='admin-table-title'> Список домов </h1>
 
         
@@ -42,11 +45,18 @@ const AdminRooms =  () => {
                                     <button className='admin-room-action' style={{backgroundColor:'#819b85'}}
                                         onClick={() => {
                                             setEditInfo(true)
+                                            edit.current = 'info'
                                             roomRef.current = room
                                         }}
                                         >Информация</button>
-                                    <button className='admin-room-action' style={{backgroundColor:"#888fa8"}}>Фотографии</button>
-                                    <button className='admin-room-action' style={{backgroundColor:"#c46565"}}>Удалить</button>
+                                    <button className='admin-room-action'
+                                     style={{backgroundColor:"#888fa8"}}
+                                     onClick={() => {
+                                            setEditInfo(true)
+                                            edit.current = 'image'
+                                            roomRef.current = room
+                                        }}
+                                     >Фотографии</button>
                                 </td>
                                 
                             </tr>

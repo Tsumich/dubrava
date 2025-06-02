@@ -37,6 +37,9 @@ const Room = sequelize.define('room', {
     },
     area:{
         type: DataTypes.BIGINT
+    },
+    short_name:{
+        type: DataTypes.STRING
     }
 })
 

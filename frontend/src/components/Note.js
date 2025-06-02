@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import paid from '../static/paid.png'
 import { Button } from 'react-bootstrap';
 import { confirmRequest, createPayment } from '../axios';
 import CreatePayment from './modal/CreatePayment';
 
-const Note = ({booking, loading, checkPaid, isRequest}) => {
+const Note = ({booking, loading, checkPaid, isRequest, isConfirmed}) => {
     const [createPayment, setCreatePayment] = useState(false)
     const [isUpdated, setIsUpdated] = useState(false)
+    const showInfo = useRef(false)
 
      if(loading){
         return <h3>Loading....</h3>
@@ -18,18 +19,23 @@ const Note = ({booking, loading, checkPaid, isRequest}) => {
      let year2 = new Date(booking.checkOut).getFullYear()
      let month2 = new Date(booking.checkOut).getMonth()
      let day2 = new Date(booking.checkOut).getDay()
- 
-    return ( 
+console.log(showInfo.current)
+     return ( 
         <> 
         <tr className='booking-table'>
-            <td >{booking.room ? booking.room.title : ''}</td>
+            <td className='booking-show-info' onClick={() => 
+                {   showInfo.current = true
+                    setCreatePayment(true)
+                }}>
+            {booking.room ? booking.room.title : ''}</td>
             <td>{booking.checkIn}</td>
             <td>{booking.checkOut}</td>
 
             {
                 !isRequest ? 
             
-            <td>{booking.IsPaid == true || isUpdated == true? 
+            <td>
+        {booking.IsPaid == true || isUpdated == true? 
                 
             <svg width="24" style={{width:'100%'}} height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M9 11L12 14L22 4" stroke="#25282B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -42,19 +48,32 @@ const Note = ({booking, loading, checkPaid, isRequest}) => {
             <td>{`${booking.lastName} ${booking.name}`}</td>
             <td>{booking.phoneNumber}</td>
             <td>
+                {isUpdated ? <div>
+
+                </div> :
                 <div style={{display:"flex"}}>
-                    <Button className='booking-admin-payment' style={{marginLeft:"10px", width:'40%'}}>Удалить</Button>
+                    <Button className='admin-delete-btn booking-admin-payment '>Удалить</Button>
                     <Button className='booking-admin-payment' style={{ width:'55%'}} onClick={() => setCreatePayment(true)}>Подтвердить</Button>
-                </div>
+                </div>}
             </td>
             </>      
             }
         </tr>
-        <CreatePayment booking={booking} isConfirmed={isRequest} show={createPayment} onHide={() => {
-            window.location.reload()
-            setCreatePayment(false)
-            setIsUpdated(true)
-            }}></CreatePayment>
+            <CreatePayment 
+                booking={booking}
+                isRequest={isRequest}
+                isConfirmed={isConfirmed} 
+                showInfo={showInfo.current}
+                show={createPayment} 
+                onCreate={() => {
+                    setIsUpdated(true)
+                    setCreatePayment(false)
+                    showInfo.current = true
+                }}
+                onHide={() => {
+                    showInfo.current = false
+                    setCreatePayment(false)}}>
+            </CreatePayment>
         </> 
     );
 

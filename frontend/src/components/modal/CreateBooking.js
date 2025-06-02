@@ -10,14 +10,13 @@ const CreateBooking = ({show, onHide}) => {
     const [checkIn, setCheckIn] = useState('')
     const [checkOut, setCheckOut] = useState('')
     const [guestsAmount, setGuestAmount] = useState(1)
-    
+ 
     const {rooms} = useSelector(state => state.rooms)
     const [room, setRoom] = useState(rooms.items[0])
     const {data} = useSelector(state => state.auth)
     const login = useRef(data ? data.login : '')
     const dispatch = useDispatch()
     const navigate= useNavigate()
-
     const addBooking= () => {
         const roomId = room.id
         const formData = {
@@ -26,20 +25,19 @@ const CreateBooking = ({show, onHide}) => {
         }
         const dayDifferent = Math.round((checkOut.setHours(0) - checkIn.setHours(0)) / (1000 * 60 * 60 * 24))
 
-        //dispatch(setRoom(room))
-//
         const savedBooking = {
-                checkIn: checkIn.toLocaleDateString(),
-                checkOut: checkOut.toLocaleDateString(),
-                checkInDry:checkIn,
-                checkOutDry:checkOut,
-                guestsAmount: guestsAmount,
-                room:room,
-                days: dayDifferent,
-                confirmed: true
+            checkIn: checkIn.toLocaleDateString(),
+            checkOut: checkOut.toLocaleDateString(),
+            checkInDry:checkIn,
+            checkOutDry:checkOut,
+            guestsAmount: guestsAmount,
+            room:room,
+            days: dayDifferent,
+            confirmed: true
         }
+        if (checkIn > checkOut ) return
         dispatch(setBooking(savedBooking))
-        navigate('/booking')
+        navigate(`/room/${roomId}/booking`)
         //createBooking(formData).then(data => onHide())
     }
 
@@ -54,42 +52,44 @@ const CreateBooking = ({show, onHide}) => {
             <Modal.Body>
                 <Form>
                 <div class="dropdown">
-                        <button style={{marginBottom:'10px'}} class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                            {room ? room.title : "Выбрать дом"}
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
-                            {rooms.items.map(room => {
-                               return  <li  onClick={() => setRoom(room)}><a class="dropdown-item  " href="#">{room.title}</a></li>
-                            })}
-                        </ul>
-                    </div>
+                    <button style={{marginBottom:'10px'}} class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        {room ? room.title : "Выбрать дом"}
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                        {rooms.items.map(room => {
+                            return  <li  onClick={() => setRoom(room)}><a class="dropdown-item  " href="#">{room.title}</a></li>
+                        })}
+                    </ul>
+                </div>
 
                     <Calendar className='admin-calendar' value={checkIn} 
-                            placeholder='Дата заезда'
-                            onChange={(e) => setCheckIn(e.value)} 
-                            dateFormat='yy/mm/dd'
-                            style={{fontSize:'13px', 
-                                height:'30px',
-                                width:'120px',
-                                maxWidth:'200px'}}></Calendar>
+                        locale='ru'
+                        placeholder='Дата заезда'
+                        onChange={(e) => setCheckIn(e.value)} 
+                        dateFormat='yy/mm/dd'
+                        style={{fontSize:'13px', 
+                            height:'30px',
+                            width:'120px',
+                            maxWidth:'200px'}}></Calendar>
 
                     <Calendar className='admin-calendar' value={checkOut}  
-                            placeholder='Дата выезда'
-                            onChange={(e) => setCheckOut(e.value)} 
-                            dateFormat='yy/mm/dd'
-                            style={{fontSize:'13px', 
-                                height:'30px',
-                                width:'120px',
-                                maxWidth:'200px'}}></Calendar>
-                    <div>Гости:</div>
-                    <input type='number' onChange={(e) => setGuestAmount(e.target.value)}></input>
-                             
+                        placeholder='Дата выезда'
+                        onChange={(e) => setCheckOut(e.value)} 
+                        dateFormat='yy/mm/dd'
+                        style={{fontSize:'13px', 
+                            height:'30px',
+                            width:'120px',
+                            maxWidth:'200px'}}></Calendar>
+                    <div style={{display:"flex", marginTop:"10px"}}>
+                        <div style={{marginRight:'10px'}}>Гости:</div>
+                        <input className='input-guest' type='number' min={1} max={room?.guest_amount} onChange={(e) => setGuestAmount(e.target.value)}></input>
+                    </div>         
                 </Form>
 
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={onHide}> Закрыть</Button>
-                <Button onClick={addBooking}> Сохранить</Button>
+                <Button className='btn-submit' onClick={onHide}> Закрыть</Button>
+                <Button  className='btn-submit' onClick={addBooking}> Сохранить</Button>
 
             </Modal.Footer>
             </Modal>

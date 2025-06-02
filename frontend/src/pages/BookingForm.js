@@ -26,37 +26,49 @@ const BookingForm = () => {
     const [getDoc, setGetDoc] = useState(false)
     const serverMessage = useRef('')
     const [showMessage, setShowMessage] = useState(false)
+    const [showErrorMessage, setShowErrMessage] = useState(false)
 
     useEffect(() => {
         if (booking){let temp = []
-            console.log('bokking effect')
         for(let i=0; i<booking.guestsAmount ; i++){
             temp.push({
                 name: '',
                 lastName: '',
-                number:  Date.now()+ i
+                number: i
             })
         }
         setGuests(temp)}   
     }, [])
 
-    
+    const setGuestName = (key, value, number) => {
+        setGuests(guests.map(i => i.number === number ? {...i, [key]: value? value : ''} : i))
+    }
+
      const sendForm = async (event) => {
         const roomId = room ? room.id : booking.room.id
         const checkIn = booking.checkInDry
         const checkOut = booking.checkOutDry
         const price = room ? room.price * booking.days : booking.room.price * booking.days
         const confirmed = booking.confirmed ? true : false
+
+        const guestsCollection = guests
+      
+        if(imGuest){
+            guestsCollection[0].name = name
+            guestsCollection[0].lastName = lastName
+        }
+
         const formData = {
-            checkIn, checkOut, roomId, guests, name, lastName, phoneNumber, price, confirmed
+            checkIn, checkOut, roomId, guestsCollection, name, lastName, phoneNumber, price, confirmed
         }
         event.preventDefault(); // Предотвращаем перезагрузку страницы
-        
+        if (phoneNumber.replace(/\D/g, '').length < 11) return setShowErrMessage(true)
+            else setShowErrMessage(false)
         const showModal = () => {
             setLoading(false)
             setShowMessage(true)
         }
-
+       
         await new Promise((resolve) => {
             setLoading(true)
             setTimeout(resolve, 2000)
@@ -66,10 +78,6 @@ const BookingForm = () => {
             serverMessage.current = data
             showModal(data)
         })
-    }
-
-    const setGuestName = (key, value, number) => {
-        setGuests(guests.map(i => i.number === number ? {...i, [key]: value? value : ''} : i))
     }
 
       return (
@@ -94,12 +102,8 @@ const BookingForm = () => {
                     Гостей: {booking.guestsAmount}
                 </div>  
             </div>
-            <div  className='booking-price'>
-                 Стоимость: {room ? room.price * booking.days : booking.room.price * booking.days} руб.
-                </div> 
-            </div>
-
-        
+             
+            </div>  
             
             <div className='booking-form' style={{marginBottom:'20px'}}>
                  <form onSubmit={ sendForm } id='sendForm'> 
@@ -121,30 +125,41 @@ const BookingForm = () => {
                 </div>
                 <div className='client-fio-line'>
                     <div>Фамилия:</div>
-                    <input onChange={e => {
+                    <input className='input-guest' onChange={e => {
                         setLastName(e.target.value)
-                        if(imGuest == true) {
-                            setGuests(guests.map(i => i.number === guests[0].number ? {...i, 
-                                ['lastName']: lastName} : i))
-                        }
+                        // if(imGuest == true) {
+                        //     console.log(guests[0])
+                        //    setGuestName('lastName', e.target.value, guests[0].number)
+                        //    console.log(guests[0])
+                        // }
                     }} required/>
                 </div>
                 <div className='client-fio-line'>
                     <div>Имя:</div>
-                    <input onChange={e => setName(e.target.value)} required/>
+                    <input onChange={e => {
+                        setName(e.target.value)
+                        // if(imGuest == true) {
+                        //    setGuestName('name', name, guests[0].number)
+                        // }
+                        }} className='input-guest' required/>
                 </div>
                 <div className='client-number-line'>
             
-                    <div>Телефон:</div>
-                    <InputMask
-                        mask="+7(999) 999-99-99"
-                        placeholder="+7(---) --- -- --"
-                        value={phoneNumber}
-                        onChange={e => setPhoneNumber(e.target.value)}
-                        required
-                    />
+                    <div style={{display:'block'}}>Телефон:</div>
+                    <div>
+                        <InputMask
+                            className='input-guest'
+                            mask="+7(999) 999-99-99"
+                            placeholder="+7(---) --- -- --"
+                            value={phoneNumber}
+                            onChange={e => setPhoneNumber(e.target.value)}
+                            required
+                        /> 
+                    </div>
+                    
+                    
                 </div>
-
+                {showErrorMessage ? <div style={{width:'100%', color:"red"}}>Некорректно заполнено поле</div> : <></>}
                 <div className='client-title' style={{
                     marginTop:"20px"
                 }}>
@@ -160,26 +175,42 @@ const BookingForm = () => {
                     {guests.map((guest, i) => {  
                     return(
                          
-                        <tr  key={i.number}>    
+                        <tr  key={guest.number}>    
                             <td><div style={{width:'50px',
                                      marginRight:'10px'}}>Гость {i+1}</div></td>
-                            <td><input required value={imGuest && i == 0 ? lastName : null} id={i+1} onChange={(e) => setGuestName('lastName', e.target.value, i.number)}  style={{marginRight:'10PX', 
-                                }} /></td>
-                            <td><input required value={imGuest  && i == 0 ? name : null} onChange={(e) => setGuestName('name', e.target.value, i.number)}/></td>
+                            <td>
+                                <input className='input-guest' 
+                                    disabled={imGuest && i == 0 ? lastName : false} 
+                                    required 
+                                    value={imGuest && i == 0 ? lastName : null} 
+                                    id={i+1} 
+                                    onChange={(e) => setGuestName('lastName', e.target.value, guest.number)} 
+                                    style={{marginRight:'10PX', 
+                                }}/>
+                            </td>
+                            <td>
+                                <input className='input-guest' 
+                                    disabled={imGuest && i == 0 ? lastName : false} 
+                                    required 
+                                    value={imGuest  && i == 0 ? name : null} 
+                                    onChange={(e) => setGuestName('name', e.target.value, guest.number)}/>
+                                </td>
                         </tr>
                     )
                 })}
                 </tbody>
                 </table>
-
-                <div className="flex align-items-center">
+                <div  className='booking-price'>
+                        Стоимость: {room ? room.price * booking.days : booking.room.price * booking.days} руб.
+                    </div> 
+                <div className="flex align-items-center accepting-msg">
                     <input required class="form-check-input" type='checkbox'/>
                     <label htmlFor="ingredient1"className="ml-2">Я согласен с <a onClick={() => setGetDoc(true)} href='#'>условиями обработки персональных данных</a></label>
                 </div>
 
                 {
                     !isLoading ? 
-                    <Button type='submit'  className='btn-submit'   >Отправить</Button>
+                    <Button type='submit'  className='btn-submit'   >Отправить</Button>                 
                 : <div class="spinner-grow" role="status">
                     <span class="visually-hidden">Loading...</span>
                  </div>

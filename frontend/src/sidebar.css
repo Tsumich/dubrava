@@ -78,3 +78,29 @@
 .admin-zone{
     margin-top: 30px;
 }
+
+@media (max-width: 568px){
+    .sidebar{
+        width: 60px;
+        height: 320px;
+        position: fixed;
+        top: 0;
+        background-color: #fff;
+        transition: 0.2s ease-out;
+        margin-top: 20vh;
+    }
+    
+    
+    .sidebar-expanded{
+        color: #fff;
+        transition: 0.1s ease-out;
+        width: 50%;
+        margin-top: 0;
+        height: 100vh;
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        background-color: #494848;
+        padding-top: 20vh;
+     }
+}

@@ -6,14 +6,6 @@
     font-size: 16px;
 }
 
-.admin-page-title{
-    margin: auto;
-    margin-top: 100px;
-    height: 100px;
-    font-size: 24px;
-    width: 60%;
- }
-
 .admin-page-ending{
     margin: auto;
     margin-top: 20px;
@@ -21,11 +13,6 @@
     font-size: 24px;
     
  }
-
-
-.admin-page-info{
-    float: left;
-}
 
 .admin-page-btns{
     float: right;
@@ -51,21 +38,9 @@
     text-align: center;
  }
 
- .booking-admin-payment{
-    width: 100px;
-    margin: 10px 10px 10px 10px;
-    margin: auto !important;
-    border-radius: 7px;
-    font-size: 24px;
-    background-color: #696a77 !important;
-    border-radius: 0%;
-    border-width: 1px;
-    border-color:#696a77 !important;
-}
-
 .booking-admin-payment:hover{
-    background-color: #52525c !important;
-    border-color:#52525c !important;
+    background-color: #74747c !important;
+    border-color:#74747c !important;
 }
 
 .booking-admin-create{
@@ -80,6 +55,15 @@
  .table{
     width: 80% !important;
     margin: auto;
+    border: #4c5552 solid 1px;
+ }
+
+ .table-skelet{
+    margin: auto;
+    width: 80% !important;
+    border: #4c5552 solid 1px;
+    border-color: #c8c8cc;
+    min-height: 40vh;
  }
 
  .admin-tables h1{
@@ -98,9 +82,32 @@
     border-radius: 10px !important;
 }
 
-.admin-tables{
-    border: 1px solid #c8c8cc;
-     width: 80vw;
-     margin: auto;
-     margin-top: 15vh;
+@media (max-width: 568px){
+
+    .admin-tables{
+        border: 1px solid #c8c8cc;
+        margin: auto;
+        margin-top: 15vh;
+        width: 80vw;
+        overflow: scroll;
+    }
+
+    .admin-tables{
+        margin-left: 60px;
+        margin-top: 40%;
+        h1 {
+            font-size: 20px;
+            margin-left: 0;
+        }
+        button{
+            margin-left: 0;
+        }
+        .booking-admin-payment{
+            width: 100% !important;
+        }
+    }
+
+    .admin-table-title{
+        margin-left:0px;
+    }
 }

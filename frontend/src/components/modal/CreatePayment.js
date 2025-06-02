@@ -3,17 +3,17 @@ import { Button, Dropdown, DropdownItem, DropdownMenu, Form, FormControl, Modal 
 import { createPayment, setConfirmed } from '../../axios';
 import { useSelector } from 'react-redux';
 
-const CreatePayment = ({show, onHide, booking, isConfirmed}) => {
+const CreatePayment = ({show, onHide, booking, showInfo, onCreate, isRequest}) => {
     const [bookingId, setBookingId] = useState(booking.id)
     const {data} = useSelector(state => state.auth)
-console.log(isConfirmed)
     const action = () => {
         const userId = data.id
         const formData = {
             userId,
             bookingId
         }
-        isConfirmed ? setConfirmed(formData).then(data => onHide()) : createPayment(formData).then(data => onHide()) 
+  
+        isRequest ? setConfirmed(formData).then(data => onHide()) : createPayment(formData).then(data => onHide()) 
     }
 
     return (
@@ -37,12 +37,30 @@ console.log(isConfirmed)
                         <div>Сумма к оплате: {booking.price}</div>
                     </div>
                     </div>
+                    <div>
+                        <div>Гости:</div>
+                        <ul>
+                            {booking?.guest?.map((guest) => {
+                           return(
+                            <li>{guest.name} {guest.lastname}</li>
+                           )
+                        })}
+                        </ul>
+                        
+                    </div>
                 </Form>
 
             </Modal.Body>
             <Modal.Footer>
-                <Button className='booking-admin-payment' onClick={onHide}> Нет</Button>
-                <Button className='booking-admin-payment' onClick={action} style={{width:'120px'}}> Подтвердить</Button>
+
+                <Button className='booking-admin-payment' onClick={onHide}>{showInfo ? 'ОК' : "Нет"}</Button>
+                {showInfo ?
+                 <></> 
+                :
+                <Button className='booking-admin-payment' onClick={() => {
+                    action()
+                    onCreate()
+                    }} style={{width:'120px'}}> Подтвердить</Button>}
             </Modal.Footer>
             </Modal>
         </div>

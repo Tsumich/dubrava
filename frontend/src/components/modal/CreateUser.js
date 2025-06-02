@@ -13,8 +13,6 @@ const CreateUser = ({show, onHide}) => {
             role, login, 
             password
         }
-        console.log(formData)
-
         createUser(formData).then(data => onHide())
     }
 

@@ -41,6 +41,7 @@ body {
 
 .admin-tables{
   margin-top: 100px;
+   
 }
 
 .mainPage {
@@ -74,7 +75,6 @@ body {
  .buttonOnMainPage:hover {
   transform: scale(1.2); /* (150% зум - Примечание: если масштаб слишком велик, он будет выходить за пределы видового экрана) */
 }
- 
 
 .textOnMainPageSRT1{
   font-size: 30px;
@@ -159,12 +159,21 @@ body {
 
 .footer{
   z-index: 100;
-  margin-top: 20vh;
+  margin-top: 200px;
   display: flex;
   height: 180px;
-  width: 100%;
   color: #fff;
   background-color: #282e2c;
+
+}
+
+.footer-menu-wr{
+  display: flex;
+  margin: auto;
+}
+
+.footer-menu-wr div{
+  margin-right: 200px;
 }
 
 .footer-contacts{
@@ -320,6 +329,19 @@ body {
    left: 80%;
  }
 
+.btn-primary:hover{
+    background-color: #4c5552 !important;
+}
+.btn-submit{
+  background-color: #5b6662 !important;
+  border-color: #5b6662 !important;
+}
+
+.input-guest{
+  border-radius: 6px;
+  border: solid 1px #b4b9b7;
+}
+
   @media (max-width: 568px){
     .container-center{
       display: block;
@@ -361,19 +383,19 @@ body {
     }
 
     .carousel-inner{
-      width: 100px;
+      width: 90vw !important;
       height: 100px;
+      margin: auto;
     }
 
     .carousel-inner div img{
-      width: 100vw !important;
+      width: 90vw !important;
+      height: 450px !important;
     }
 
     .chat-bot-container img{
       margin: 0px !important;
     }
-
-   
 
     .text-carousel-bottom{
       visibility: hidden;
@@ -382,7 +404,8 @@ body {
 
     .text-carousel-main{
       font-size: 18px;
-      width: 100%;
+      width: 90%;
+      margin: auto;
       margin-top: 60px;
       margin-bottom: 50px;
     }
@@ -404,4 +427,107 @@ body {
       margin-left: 10px;
       width: 90vw !important;
     }
+
+    .footer{
+      height: 320px;
+      font-size: 13px;
+      flex-direction:row;
+      padding-top: 20px;
+    }
+
+    .footer-site-menu{
+      width: 190px !important;
+      margin-right: 0 !important;
+    }
+
+    .footer-site-menu .line{
+      margin-right: 0;
+      margin-left: 0;
+     }
+   
+    .footer-menu-wr{
+      display: block;
+      width: 190px !important;
+    }
+
+    .header{
+      display: block;
+    }
+
+    .wr-about{
+      display: block !important;
+    }
+
+    .about-title{
+     margin-top: 180px !important;
+     text-align: center;
+    }
+
+    .about-text{
+      width: 100vw !important;
+      padding-left: 5vw !important;
+       padding-right: 5vw !important;
+    }
+    
+    .about-page-go-to-search{
+      width: 100%;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .about-image img{
+      width: 90vw;
+    }
+    .about-image{
+      text-align: center !important;
+    }
+
+    #about-booking{
+      text-align: center;
+      display: block !important;
+    }
+
+    .about-lazy-image{
+      width: 96vw !important;
+    }
+
+    .about-booking-form{
+      width: 100%;
+      display: block !important;
+      text-align: center !important;
+    }
+
+    #booking-rules{
+      margin-left: 20px;
+      display: block !important;
+    }
+    
+    .rules-h2{
+      margin-left: 5vw !important;
+      width: 90vw !important;
+    }
   }
+
+.admin-image-edit-wr{
+  margin-bottom: 20px;
+}
+
+.admin-image-edit-wr > div{
+  padding: 5px 5px 5px 5px;
+}
+
+.admin-image-edit-wr > div{
+  padding: 5px 5px 5px 5px;
+}
+
+.admin-image-edit-wr img{
+  width: 50%;
+  height: 50%;
+}
+
+.admin-image-edit-wr input{
+  width: 100% !important;
+}
+
+.infos-inputs{
+  margin-left: 10px;
+}

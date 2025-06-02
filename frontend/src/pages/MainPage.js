@@ -16,7 +16,7 @@ const MainPage = observer(() => {
    // const [activeServiceImg, setActiveServiceImg] = useState (serviseImg[0])
     const [getMoreInfo, setGetMoreInfo] = useState(false)
     return (
-        <div className='main-page-component'>
+        <div className='main-page-component' style={{height:'100%'}}>
            
         <div className='mainPage'>
             <div class='textOnMainPage'>

@@ -19,12 +19,12 @@ const Header = () => {
 
     return (
         <div className='header'>
-        
+            <div className='logo-text'>
             <img src={logo2} className='logo-icon' style={{height:'60px'}} 
                 onClick={(() => {
                     navigate('/')
                 })}/>
-            <div className='logo-text'>DUBRAVA</div>
+            DUBRAVA</div>
              
             <div className='headerElement'>
                 <button className='header-button' onClick={() => navigate('/about')}>О нас</button>

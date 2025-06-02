@@ -26,11 +26,11 @@
     background-color: rgb(134, 149, 168) !important;; 
     border: none !important;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
- input{
+.calendar-input > span > input{
     width: 110px;
     border-radius: 5px;
     border: 1px solid;
@@ -70,6 +70,7 @@
 }
 
 .room-other-photo{
+    display: flex;
     position: absolute;
     bottom: 0;
     margin-left: 20px;
@@ -78,6 +79,7 @@
 
 .rooms-image{
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .rooms-image-active{
@@ -240,10 +242,19 @@
         width: 80vw;
      }
      .room-info{
-        max-width: 97vw;
+        max-width: 90vw;
         float: none;
      }
      .room-photos{
         max-width: 97vw;
      }
+
+    .rooms-image{
+        margin-right: 10px;
+        cursor: pointer;
+    }
+ }
+
+ .p-datepicker-trigger{
+    border-radius: 20%;
  }

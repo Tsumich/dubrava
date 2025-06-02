@@ -44,8 +44,7 @@ class AdminController{
     }
 
      async createBooking (req,res) {
-        let {checkIn, checkOut, roomId, guests, name, lastName, phoneNumber, price, isPaid, confirmed} = req.body
-        console.log(lastName)
+        let {checkIn, checkOut, roomId, guestsCollection, name, lastName, phoneNumber, price, isPaid, confirmed} = req.body
         try{
             await Booking.findAll({
             where: {
@@ -71,12 +70,13 @@ class AdminController{
                         phoneNumber:phoneNumber,
                         confirmed: confirmed
                         }).then(async booking => { 
-                            console.log(booking.id)
-                            if(guests & booking){guests.map( async guest => {
-                            const createsGuest = await Guest.create({
-                                lastName:guest.lastName,
-                                name: guest.lastName,
-                                bookingId: booking.id
+                            if(guestsCollection && booking){
+                                guestsCollection.map( async guest => {
+                                    console.log(guest, booking.id)
+                                    const createsGuest = await Guest.create({
+                                        lastname:guest.lastName,
+                                        name: guest.name,
+                                        bookingId: booking.id
                             })
                             })}
                             return res.json('Запись на бронирование создана')
@@ -129,7 +129,6 @@ class AdminController{
     
     async registration (req, res){
         const {login, password, role} = req.body
-        console.log(req.body)
         if (!login || !password) {
             return next(ApiError.badRequest('Некорректный login или password'))
         }
@@ -165,6 +164,11 @@ class AdminController{
         return res.json({token})
     } 
 
+    async getAllUsers(req, res){
+        const users = await User.findAll()
+        return res.json(users)
+    }
+
     async getMe (req,res){
         console.log('getting me...', req.userId)
         try{
@@ -182,7 +186,6 @@ class AdminController{
 
     async createBooking2 (req,res) {
         let {checkIn, checkOut, roomId, guests, name, lastName, phoneNumber, price, isPaid, confirmed} = req.body
-        console.log('sdfsdfsdf')
         lock.acquire('resourceKey', async () => {
             const booking = await Booking.findAll({
                 where: {
@@ -200,7 +203,6 @@ class AdminController{
                 await processResource();
             return booking;
           }).then( async (data) => {
-            console.log(data)
             if(data.length == 0) {
                 const booking =  await Booking.create({
                     checkIn:checkIn, 
@@ -213,7 +215,6 @@ class AdminController{
                     phoneNumber:phoneNumber,
                     confirmed: confirmed
                     }).then(booking => {   
-                        console.log(booking.id)
                         if(guests & booking){guests.map( async guest => {
                         const createsGuest = await Guest.create({
                             lastName:guest.lastName,

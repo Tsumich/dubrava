@@ -8,7 +8,6 @@ const checkAuth =  (req, res, next) => {
       const decoded = jwt.verify(token, 'random_secret_key123');
 
       req.userId = decoded.id;
-      console.log('sdfsdfsdf',decoded, req.userId)
       next();
     } catch (e) {
       return res.status(403).json({

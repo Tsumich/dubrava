@@ -4,8 +4,7 @@ const { Op } = require('sequelize')
 const Sequelize = require('sequelize')
 const moment = require("moment");
 const { checkAuth } = require('./checkAuth');
- 
-
+const multer = require('multer');
 
 class RoomConroller{
 
@@ -32,7 +31,9 @@ class RoomConroller{
                   },
             })
         }else{
-            booking = await Booking.findAll({include: [{model: Guest, as: "guest"}, {model: Room, as: "room"}]})
+            booking = await Booking.findAll({
+                where: {confirmed: true},
+                include: [{model: Guest, as: "guest"}, {model: Room, as: "room"}]})
 
         }
         return res.json(booking);
@@ -44,7 +45,6 @@ class RoomConroller{
         let {checkIn, checkOut, roomsId} = req.body
         const checkInDate = new Date(checkIn)
         const checkOutDate = new Date(checkOut)
-        console.log(roomsId)
 
         const booking =  await Booking.findAll({
             attributes:  ['roomId'],
@@ -73,6 +73,7 @@ class RoomConroller{
          const booking =  await Booking.findAll({
              where: {
                     [Op.and]: [
+                        {confirmed: true},
                         {checkOut: { [Op.gte]: now }},
                         {checkOut: { [Op.lte]: startDate}}
                     ]
@@ -86,8 +87,28 @@ class RoomConroller{
      }
  
      async setPrice(req, res){
-        let {id, price} = req.query
-        await Room.update( { firstName: 'John', }, { where: { userId: 2, }, } )
+        let {id, price} = req.body
+        console.log(id, price)
+        const newPrice = await Room.update( { price: price, }, { where: { id: id, }, } )
+        return  res.json(newPrice)  
     }
+
+    async editImageInfo(req, res){
+        let {imageId, imageTitle, imageInfo} = req.body
+        await Image.update( { 
+            title: imageTitle,
+            info: imageInfo
+        }, { where: { id: imageId, }, } )
+    }
+
+    async changeRoomImageName (req, res){
+    let {oldName, newName} = req.body
+    console.log(req.body)
+    const imageData =  await Image.update( { 
+            image: newName,
+        }, { where: { image: oldName, }, } )
+        return  res.json(imageData)  
+    }
+    
 }
 module.exports = new RoomConroller()

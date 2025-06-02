@@ -8,7 +8,6 @@ import { setRoom } from '../redux/slices';
 import { isAuthSelector } from '../redux/slicesAuth';
 
 const Room  = ({room}) => {
-    console.log(room)
     const [mainImage, setMainImage] = useState(room.image[0].image)
     const [activePhoto, setActivePhoto] = useState(room.image[0].id)
     const dispatch = useDispatch()
@@ -29,9 +28,9 @@ const Room  = ({room}) => {
         history('/room/' + room.id)
      }
 
-    const URL = 'https://dubrava789.onrender.com/'
-    const mainPhotoPath = `${URL}${mainImage}`
-
+    //const URL = 'https://dubrava789.onrender.com/'
+    const URL = 'http://176.196.11.180:9000/'
+ 
     const info = useRef('')
     info.current = room.info ? room.info.substr(0, 123) + ' ...' : ''
     return (
@@ -45,26 +44,27 @@ const Room  = ({room}) => {
 
                 <div className='bg-image'></div>
                 <div className='room-other-photo'>
-                    
                     <Image onClick={()=>{changeImage(0, room.image[0].id)}} 
                             className={activePhoto == room.image[0].id? 'rooms-image-active':'rooms-image' }
                             width={90} 
                             height={80} 
-                            style={{border:'50px'}}
-                            src={`http://176.196.11.180:9000/${room.image[0]?.image}`}></Image>
+                            style={{border:'50px', zIndex:'1000'}}
+                            src={`${URL}${room.image[0]?.image}`}></Image>
 
                       
                     <Image onClick={()=>{changeImage(1, room.image[1]?.id)}} 
                             className={activePhoto == room.image[1]?.id? 'rooms-image-active':'rooms-image' }
                             width={90} 
                             height={80} 
-                            src={`http://176.196.11.180:9000/${room ? room.image[1]?.image : ""}`}></Image>
+                            style={{zIndex:"1000"}}
+                            src={`${URL}${room ? room.image[1]?.image : ""}`}></Image>
                     
                     
                     <Image onClick={(e)=>{changeImage(2, room.image[2]?.id)}}
                             className={activePhoto == room.image[2]?.id? 'rooms-image-active':'rooms-image' }
                             width={90} 
                             height={80} 
+                            style={{zIndex:"1000"}}
                             src={`http://176.196.11.180:9000/${room.image[2]?.image}`}></Image>
                 </div>
             </div>
@@ -81,7 +81,7 @@ const Room  = ({room}) => {
                                <svg width="24" height="24" viewBox="0 0 48 48" fill="none" 
                                     style={{marginRight:"10px"}}
                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M30 6H42M42 6V18M42 6L28 20M18 42H6M6 42V30M6 42L20 28" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M30 6H42M42 6V18M42 6L28 20M18 42H6M6 42V30M6 42L20 28" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" stroke-strokeLinejoin="round"/>
                                 </svg>
                                 Площадь: {room.area} кв.м 
                             </div>
@@ -90,7 +90,7 @@ const Room  = ({room}) => {
                                 { 
                                 guestAmount.map((i) => {
                                     return (<svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M40 42V38C40 35.8783 39.1571 33.8434 37.6569 32.3431C36.1566 30.8429 34.1217 30 32 30H16C13.8783 30 11.8434 30.8429 10.3431 32.3431C8.84285 33.8434 8 35.8783 8 38V42M32 14C32 18.4183 28.4183 22 24 22C19.5817 22 16 18.4183 16 14C16 9.58172 19.5817 6 24 6C28.4183 6 32 9.58172 32 14Z" stroke="#1E1E1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M40 42V38C40 35.8783 39.1571 33.8434 37.6569 32.3431C36.1566 30.8429 34.1217 30 32 30H16C13.8783 30 11.8434 30.8429 10.3431 32.3431C8.84285 33.8434 8 35.8783 8 38V42M32 14C32 18.4183 28.4183 22 24 22C19.5817 22 16 18.4183 16 14C16 9.58172 19.5817 6 24 6C28.4183 6 32 9.58172 32 14Z" stroke="#1E1E1E" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>)
                                     
                                 })}

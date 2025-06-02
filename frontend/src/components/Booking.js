@@ -1,13 +1,10 @@
-import React , {useMemo, useState, useEffect} from 'react';
-import { useTable } from 'react-table'
+import React , {useState, useEffect} from 'react';
 import { getBooking, getEnd } from '../axios';
 import Note from './Note';
 import Pagination from './Pagination';
 import { Button } from 'react-bootstrap';
 import CreateBooking from './modal/CreateBooking';
-import { useSelector } from 'react-redux';
 
-import { useNavigate } from 'react-router-dom';
 
 const Booking =  ({showingEnd}) => {
     const [bookings, setBookings] = useState([])
@@ -15,9 +12,7 @@ const Booking =  ({showingEnd}) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [bookingPerPage] = useState(5)
     const [createBooking, setCreateBooking] = useState(false)
-
-    const navigate = useNavigate()
-    if(!useSelector(state => state.auth)) navigate('/')
+   
     useEffect(() => {
         const getData = async() => {
             setLoading(true)
@@ -31,7 +26,6 @@ const Booking =  ({showingEnd}) => {
         }
         getData()
     }, []) 
-
     
     let lastBookingIndex = currentPage * bookingPerPage
     const firstBookingIndex = lastBookingIndex - bookingPerPage
@@ -46,7 +40,7 @@ const Booking =  ({showingEnd}) => {
        <div className='container mt-5'>
         <h1 className='admin-table-title'>{showingEnd ? 'Проживание подходит к концу' : 'Бронирование домов'} </h1>
         <div> {!showingEnd ? <Button className='booking-admin-create' onClick={() => setCreateBooking(true)}>Создать бронь</Button> : <></>} </div>
-        
+           { currentBooking.length > 0 ?
             <table className="table" >
                 <thead>
                     <tr className='booking-table'>
@@ -58,9 +52,7 @@ const Booking =  ({showingEnd}) => {
                 </thead>
                 <tbody>
                     {currentBooking.map(booking => {
-                    return(
-                        <Note booking={booking} loading={loading} checkPaid={showingEnd}/>
-                    ) 
+                        return(<Note booking={booking} loading={loading} checkPaid={showingEnd}/>) 
                     })}
                         
                 </tbody>
@@ -68,11 +60,23 @@ const Booking =  ({showingEnd}) => {
                 bookingPerPage={bookingPerPage} 
                 totalBookings={bookings.length}
                 paginate={paginate}/>
+            </table> : 
+            <table className='table-skelet'>
+                <thead>
+                    <tr className='booking-table'>
+                    <th scope="col">Комната</th>
+                    <th scope="col">Дата заезда</th>
+                    <th scope="col">Дата выезда</th>
+                    <th scope="col">Оплачено</th>
+                    </tr>  
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="4" style={{textAlign:'center', color:'#c8c8cc'}}>Нет данных</td>
+                    </tr>    
+                </tbody>
             </table>
-        
-
-            
-
+            }
         </div>
 
         <CreateBooking show={createBooking} onHide={() => setCreateBooking(false)}></CreateBooking>

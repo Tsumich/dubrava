@@ -29,6 +29,28 @@
 	font-size: 15px;
 }
 
+ .booking-admin-payment{
+    width: 100px;
+    margin: 10px 10px 10px 10px !important;
+    margin: auto !important;
+    border-radius: 7px;
+    font-size: 24px;
+    background-color: #8d8e9b !important;
+    border-radius: 0%;
+    border-width: 1px;
+    border-color:#8d8e9b !important;
+ }
+
+.admin-delete-btn{
+  width: 40%;
+  margin-right: 10px !important;
+}
+
+.booking-table:hover td{
+	background-color: inherit;
+	background-color: rgb(237, 238, 235) !important;
+}
+
 .room-column{
      background-color: #dcdbe2;
 }

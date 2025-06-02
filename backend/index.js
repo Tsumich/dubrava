@@ -4,15 +4,15 @@ const sequelize = require('./db')
 const models = require('./models/models')
 const router = require('./routes/routes')
 const path = require('path')
-const https = require("https");
 const fs = require("fs");
 require('dotenv').config()
+const multer = require('multer');
 
 const app = express()
+app.use(express.urlencoded({ extended: true })); // Для форм
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname, 'static')))
 app.use(cors())
-//app.use(cors({ origin: 'https://dubrava-tb2h.vercel.app' }));
 app.use('/api', router)
 
 

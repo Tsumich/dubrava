@@ -10,6 +10,7 @@ router.post('/request/', adminController.request)
 router.get('/request/', adminController.getRequests)
 
 router.post('/login', adminController.login)
+router.get('/users', adminController.getAllUsers)
 router.post('/reg', adminController.registration)
 router.get('/auth/me',checkAuth, adminController.getMe)
 

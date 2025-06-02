@@ -52,15 +52,16 @@
 
 .room-page-image-info{
     margin: auto;
+    margin-left: 80px;
 }
 
 .room-page-image-info img{
     z-index: 1000;
     margin-top: 10px;
     float: left;
-    height: 70vh;
-    width: 100vh;
-    margin-left: 10px;
+    height: 400px;
+    width: 100%;
+    
 }
 
 .room-page-info{
@@ -127,8 +128,8 @@
     float: left;
     border: solid 1px;
     border-color: #ebebeb;
-    box-shadow: 10px 5px 5px rgb(209, 209, 209);
-    background-color: #ffffff;
+     background-color: #ffffff;
+     margin-bottom: 20px;
 }
 
 .booking-wr{
@@ -214,7 +215,10 @@
 .room-meel-wr{
     display: flex;
     margin-top: 70px;
-   }
+    width: fit-content;
+    margin: auto;
+    padding-left: 140px;
+}
 
 .room-page-image-meels {
     margin: auto;
@@ -240,12 +244,15 @@
  }
 
  .room-info-banner{
-    background-color: #303133;
-    position:absolute;
+    background-color: #e0e7e3;
+    position:static;
+    bottom: 0px;
     margin-top: 26%;
-    width: 30%;
+    border: solid 1px #e0e7e3;
+    border-radius: 15px;
+    width: 100%;
     height:max-content;
-    color: #ffffff;
+    color: #222020;
     text-align: center;
     font-size: 20px;
  }
@@ -260,14 +267,27 @@
     width: 60vw;
   }
 
-  .room-page-image-info img{
-    width: 100vw;
-    margin-left: 0px !important;
+  .room-page-image-info{
+    width: 90vw;
+    margin: auto;
     height: 330px !important;
   }
+  
+  .room-page-image-info img{
+    height: 330px !important;
+}
 
   .room-info-container{
     display: block;
+    margin-left: 0px !important;
+  }
+
+  .benefits-list{
+   text-align: center;
+  }
+
+  .footer{
+    margin-top: 60px;
   }
 
   .carousel{
@@ -277,12 +297,28 @@
   }
 
   .room-page-line{
-    margin-left: 40px;
-    background-color: #c6cfe6;
+    margin-left: 20px;
+    background-color: #dde2ee !important;
   }
 
   .room-meel-wr{
+    width: 100vw;
+    margin: 0;
     display: block !important;
+    font-size: 14px;
+    padding: 0px;
+  }
+
+  .container-booking{
+    width: 90vw;
+    display: block;
+    margin: auto;
+    margin-top: 21vw;
+  }
+
+  .room-page-meels{
+    height: max-content;
+    width: 90vw;
   }
 
   .carousel-inner{
@@ -298,5 +334,69 @@
   .room-page-info{
     margin-left: 0px;
   }
+
+  .room-page-images-column-images{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    }
+    .room-page-bg-image{
+        visibility: hidden;
+    }
+
+    .room-info-banner{
+        position: relative;
+        width: 100%;
+        margin-top: 25px
+    }
+
+    .room-page-title{
+        width: 70vw;
+        margin: auto;
+    }
+    .button-go-booking{
+        margin-bottom: 20px;
+    }
+
+    .booking-wr{
+        display: block;
+    }
+    .booking-form{
+        margin: auto;
+        margin-top: 20px;
+    }
+    .booking-form input{
+        width: 30vw;
+    }
+
+    .booking-form{
+        margin: auto;
+    }
+
+    .booking-wr{
+        display: block !important;
+        height: 100vh !important;
+    }
+
+    .accepting-msg label{
+       width: 300px;
+    }
+
+    .booking-form{
+        width: 90%;
+    }
+
+    .wr-room-page{
+        margin-top: 150px;
+    }
+
+    .client-title input{
+        width: 10vw;
+    }
  }
 
+.room-page-images-banner{
+    display:flex;
+    margin-top:90px;
+    margin-left:10%;
+}

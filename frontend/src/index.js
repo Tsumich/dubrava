@@ -8,7 +8,7 @@ import './search.css';
 import './table.css'
 import './room.css'
 import './sidebar.css'
-import './admin.css'
+import './admin.scss'
 import './index.scss'
 import '../node_modules/react-chatbot-kit/build/main.css'
 import App from './App';

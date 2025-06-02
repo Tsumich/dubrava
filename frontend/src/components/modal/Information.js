@@ -7,14 +7,14 @@ const Information = ({show, onHide, message}) => {
     return (
         <div>
             <Modal show={show} onHide={onHide} centered>
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    {message ? message : ''}
-                </Modal.Title>
+            <Modal.Header>
+                Уведомление
             </Modal.Header>
-           
+            <Modal.Body>
+                {message ? message : ''}
+            </Modal.Body>
             <Modal.Footer>
-                <Button onClick={e => window.location.reload()}> Закрыть</Button>
+                <Button onClick={e => window.location.reload()} className='btn-submit'> Закрыть</Button>
 
             </Modal.Footer>
             </Modal>

@@ -19,13 +19,12 @@ const CalendarBooking = ({startDate, rooms}) => {
     let startDateInPeriod
     let endDateInPeriod
     let mounth = ['янв', "фев", "мар", "апр", "май", "июн", "июл", "авг", "сент", "окт", "нояб", "дек"]
-   let globalResult = [] // [ [0-dates], [1-results]]
+    let globalResult = [] // [ [0-dates], [1-results]]
     if(!startDate) {
         return( 
             <div className='calendar-loading'></div>
         )
     }
-console.log('dfgdfg')
     const getDates = (startDate,toNext) => {
         datesArray = [] // большие даты
         dateFormatArray = []

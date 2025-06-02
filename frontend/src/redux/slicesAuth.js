@@ -75,7 +75,7 @@ const authSlice = createSlice({
 	}
 })
 // функция проверяет если инфа о юзере есть в состоянии значит авторизован
-export const isAuthSelector = state => Boolean(state.auth.data)
+export const isAuthSelector =  state =>  Boolean(state.auth.data)
 
 export const { logout } = authSlice.actions
 

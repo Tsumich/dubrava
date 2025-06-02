@@ -21,7 +21,7 @@ const Auth = () => {
 		}
 		if('token' in data.payload){
 			window.localStorage.setItem('token',data.payload.token)
-            navigate('/')
+            navigate('/admin/profile')
 		}
         window.location.reload();
 	}
@@ -38,14 +38,14 @@ const Auth = () => {
                     Логин:
                 </label>
                 <input type="text" id="first" name="first" 
-                    placeholder="Enter your Username" required
+                    placeholder="Логин " required
                     onChange={(e) => setLogin(e.target.value)}/>
 
                 <label for="password">
                     Пароль:
                 </label>
                 <input type="password" id="password" name="password" 
-                    placeholder="Enter your Password" required
+                    placeholder="Пароль" required
                     onChange={(e) => setPassword(e.target.value)}/>
 
                 <div class="wrap">

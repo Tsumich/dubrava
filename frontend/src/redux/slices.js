@@ -24,8 +24,10 @@ const roomsSlice = createSlice({
 			state.rooms.room = action.payload
 		},
         setBooking: (state, action) => {
-            console.log(action.payload)
 			state.booking = action.payload
+		},
+        setRoomImageTitle: (state, action) => {
+            state.rooms[action.payload].title ='aa' 
 		}
 	},
     extraReducers: (builder) => {
@@ -49,6 +51,8 @@ export const roomsReducer = roomsSlice.reducer
 export const {setRoom} = roomsSlice.actions
 
 export const {setBooking} = roomsSlice.actions
+
+export const {setRoomImageTitle} = roomsSlice.actions
 
 
 export const getRoom = state => state.rooms.rooms.room

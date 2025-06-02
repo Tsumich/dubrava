@@ -9,7 +9,6 @@ import config from '../chat-bot/config';
 import { Button } from 'react-bootstrap';
 const Bot = () => {
     const [show, setShow] = useState(false)
-    {console.log(show)}
 
     return (
         <div className= 'chat-bot-container'>
