@@ -21,7 +21,8 @@ const Auth = () => {
 		}
 		else if('token' in data.payload){
 			window.localStorage.setItem('token',data.payload.token)
-            navigate('/admin/profile')
+            navigate('/')
+            window.location.reload()
 		}
 	}
     require('../auth.css')

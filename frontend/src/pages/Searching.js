@@ -132,7 +132,7 @@ const Searching = () => {
                             Гостей: 
                         </td>
                         <td  style={{height:'40px'}}>
-                            <input value={guestsAmount} type='number' min="1" max="10" onChange={(e)=>setGuestsAmount(e.target.value)}></input>
+                            <input style={{height:"30px", width:'50px'}} value={guestsAmount} type='number' min="1" max="10" onChange={(e)=>setGuestsAmount(e.target.value)}></input>
                         </td>
                     </tr>
 

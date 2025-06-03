@@ -185,6 +185,8 @@
 .form-check{
     margin: auto;
     margin-left: 60px;
+    display: flex;
+    align-items: center;
  }
 
  .align-items-center{
@@ -203,9 +205,11 @@
 
  .booking-form input {
     width: 150px;
+    height: 30px;
  }
 .form-check-input{
-    width: 17px !important;
+    width: 20px !important;
+    height: 20px !important;
     margin-right: 10px;
 }
 .wr-room-page{
