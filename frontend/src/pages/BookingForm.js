@@ -114,7 +114,7 @@ const BookingForm = () => {
                     {
                         name && lastName ? 
                     
-                    <div class="form-check" >
+                    <div class="form-check" style={{height:'30px', display:'flex'}} >
                     <input class="form-check-input" onClick={() => setImGuest(!imGuest)} type="checkbox" ONvalue="" id="flexCheckIndeterminate"/>
                     <label class="form-check-label" for="flexCheckIndeterminate">
                         Я гость
