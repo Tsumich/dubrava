@@ -21,7 +21,7 @@ const Searching = () => {
     const {rooms} = useSelector(state => state.rooms)
     const [vacancies, setVacancies] = useState()
     const [showCalendar, setShowCalendar] = useState(false)
- 
+console.log(rooms.status) 
     useLayoutEffect(() => {
         window.scrollTo(0, 0);
     }, [ ]);
@@ -143,7 +143,7 @@ const Searching = () => {
               
                 <Button className='search-button' type='submit' onClick={submitSearch}>Поиск</Button>
             </div>
-            {!rooms ?  <h1>Загрузка</h1> :
+            {rooms.status === 'pending' ?  <h1>Загрузка</h1> :
             <div className='rooms'>
                 { !showCalendar ? 
                 <Rooms rooms={vacancies?vacancies:rooms.items}/> :
