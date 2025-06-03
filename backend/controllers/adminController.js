@@ -149,11 +149,12 @@ class AdminController{
         const {login, password, role} = req.body
         const user = await User.findOne({where: {login}})
         if (!user) {
-            return res.json('Пользователь не найден')
+            res.status(404).json({ error: "Пользователь не найден" });
         }
+        console.log(password, user.password)
         let comparePassword = bcrypt.compareSync(password, user.password)
         if (!comparePassword) {
-            return res.json('неверный пароль')
+           res.status(401).json({ error: "Неверный логин или пароль" });
         }
         const token = generateJwt(user.id, user.login, user.role)
         return res.json({token, login, role})

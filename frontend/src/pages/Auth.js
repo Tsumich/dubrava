@@ -19,11 +19,10 @@ const Auth = () => {
 		if(!data.payload){
 			return alert('Не удалось авторизоваться')
 		}
-		if('token' in data.payload){
+		else if('token' in data.payload){
 			window.localStorage.setItem('token',data.payload.token)
             navigate('/admin/profile')
 		}
-        window.location.reload();
 	}
     require('../auth.css')
 

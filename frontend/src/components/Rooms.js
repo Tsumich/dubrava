@@ -27,7 +27,7 @@ const Rooms = ({rooms}) => {
                 <img className='search-line' src={line}></img>
             </div>    
             </div>   
-            {isRoomLoading || roomsStatus == 'pending' ? 
+            {!rooms ? 
             <div className='spinner-room-loading'>
                 <div class="spinner-grow" role="status">
                     <span class="visually-hidden">Loading...</span>

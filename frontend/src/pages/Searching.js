@@ -81,6 +81,7 @@ const Searching = () => {
     return (
 
         <div className='wr-search' style={{height:'100%'}}>
+            
             <div className='search'>
                 <h5 className='title-parameters'>Параметры</h5>
                 <table>
@@ -142,13 +143,12 @@ const Searching = () => {
               
                 <Button className='search-button' type='submit' onClick={submitSearch}>Поиск</Button>
             </div>
-
             <div className='rooms'>
                 { !showCalendar ? <Rooms rooms={vacancies?vacancies:rooms.items}/> :
                 <CalendarBooking startDate={checkIn} rooms={rooms}/>
                 }
             </div>
-
+            
             <Bot/>
             
         </div>
