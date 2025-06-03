@@ -143,7 +143,7 @@ const Searching = () => {
               
                 <Button className='search-button' type='submit' onClick={submitSearch}>Поиск</Button>
             </div>
-            {rooms ?  <h1>Загрузка</h1> :
+            {!rooms ?  <h1>Загрузка</h1> :
             <div className='rooms'>
                 { !showCalendar ? 
                 <Rooms rooms={vacancies?vacancies:rooms.items}/> :
