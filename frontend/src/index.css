@@ -340,6 +340,8 @@ body {
 .input-guest{
   border-radius: 6px;
   border: solid 1px #b4b9b7;
+  height:30px;
+  width: 50px;
 }
 
   @media (max-width: 568px){

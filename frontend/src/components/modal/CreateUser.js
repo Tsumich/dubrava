@@ -31,14 +31,14 @@ const CreateUser = ({show, onHide}) => {
                 <div class="dropdown" style={{display:'flex'}}>
                     <div style={{marginRight:'10px'}}>
                         <div style={{display:'flex', marginBottom:"10px"}}>
-                            <div style={{width:"50px"}}>Логин</div>
-                            <input value={login} 
+                            <div style={{width:"50px", marginRight:"10px"}}>Логин</div>
+                            <input style={{height:"30px"}} value={login} 
                                 onChange={(e) => {setLogin(e.target.value)}}>
                             </input>
                         </div>
                         <div style={{display:'flex'}}>
-                            <div style={{width:"50px"}}>Пароль</div>
-                            <input value={password} 
+                            <div style={{width:"50px", marginRight:"10px"}}>Пароль</div>
+                            <input style={{height:"30px"}} value={password} 
                                 onChange={(e) => setPassword(e.target.value)}>
                             </input>
                         </div>
