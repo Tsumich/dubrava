@@ -143,7 +143,8 @@ console.log(rooms.status)
               
                 <Button className='search-button' type='submit' onClick={submitSearch}>Поиск</Button>
             </div>
-            {rooms.status === 'loading' ?  <h1>Загрузка</h1> :
+            {rooms?.status == 'loading' ?  
+                <div className='rooms'><Rooms showSkelet={true} rooms={rooms}/></div>:
             <div className='rooms'>
                 { !showCalendar ? 
                 <Rooms rooms={vacancies?vacancies:rooms.items}/> :

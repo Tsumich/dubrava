@@ -344,6 +344,15 @@ body {
   width: 50px;
 }
 
+.blink {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 20%;
+  }
+}
   @media (max-width: 568px){
     .container-center{
       display: block;

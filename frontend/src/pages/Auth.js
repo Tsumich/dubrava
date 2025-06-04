@@ -10,11 +10,12 @@ const Auth = () => {
 	const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const onSubmit = async (values) => {
+    const onSubmit = async (event) => {
         const formData = {
             login, 
             password
         }
+        event.preventDefault();
 		const data = await dispatch(fetchUserData(formData))
 		if(!data.payload){
 			return alert('Не удалось авторизоваться')
@@ -31,6 +32,7 @@ const Auth = () => {
         
          <div className='auth-wr'>
         <div class="auth-main">
+            <form onSubmit={ onSubmit }>
             <h1>Авторизация</h1>
             <h6 style={{color:'#70756f'}}>Введите данные вашего аккаунта </h6>
             <div>
@@ -44,17 +46,17 @@ const Auth = () => {
                 <label for="password">
                     Пароль:
                 </label>
-                <input type="password" id="password" name="password" 
+                <input type="password" id="password" name="password"
                     placeholder="Пароль" required
                     onChange={(e) => setPassword(e.target.value)}/>
 
                 <div class="wrap">
-                    <button className='btn-to-auth' onClick={onSubmit}>
+                    <button className='btn-to-auth' type='submit'>
                         Войти
                     </button>
                 </div>
             </div>
-        
+        </form>
       
         </div>
         </div>
