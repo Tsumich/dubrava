@@ -516,6 +516,22 @@ body {
       margin-left: 5vw !important;
       width: 90vw !important;
     }
+
+    .booking-table th{
+      width: 40px;
+    }
+
+    .booking-show-info{
+      width: 100px;
+    }
+
+    .booking-table th{
+      white-space: nowrap;
+    }
+
+    .admin-room-action{
+      margin-top: 10px !important;
+    }
   }
 
 .admin-image-edit-wr{

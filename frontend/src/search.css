@@ -41,7 +41,6 @@
     margin: auto;
     margin-top: 100px;
     margin-left: 80px;
-
 }
 
 .room-in-search{
@@ -181,7 +180,9 @@
 }
 
 @media (max-width: 568px){
-  
+    .rooms{
+        margin-left: 0;
+    }
     .wr-search{
         display: grid;
         margin-right: 0px !important;

@@ -63,7 +63,7 @@
     width: 80% !important;
     border: #4c5552 solid 1px;
     border-color: #c8c8cc;
-    min-height: 40vh;
+    min-height: 70vh;
  }
 
  .admin-tables h1{
@@ -83,6 +83,9 @@
 }
 
 @media (max-width: 568px){
+    .admin-room-action{
+      margin-top: 10px !important;
+    }
 
     .admin-tables{
         border: 1px solid #c8c8cc;

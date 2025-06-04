@@ -39,8 +39,8 @@
 
 .room-page-bg-image img{
     object-fit: cover;
-    width: 50%;
-    height: 65%;
+    width: 650px;
+    height: 450px;
     filter: grayscale(100%);
     filter: blur(2px);
     margin-left: 80px;

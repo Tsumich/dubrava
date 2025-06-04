@@ -131,6 +131,8 @@ return (
                 </div>
 
             </div>
+            <Button onClick={onHide} className='btn-submit'> Закрыть</Button>
+
         </Modal> 
         : 
         <Modal show={show} onHide={onHide} centered>

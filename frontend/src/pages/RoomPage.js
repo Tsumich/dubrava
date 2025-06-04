@@ -161,10 +161,10 @@ const RoomPage =  () => {
                                     </div>   
                                     
                                     <div class="carousel-item">
-                                    <img src={`${URL}${room?.image[0]?.image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
+                                    <img src={`${URL}${room?.image[3]?.image}`} class="d-block w-100" style={{height:'400px'}} alt="..."/>
                                     <div class="carousel-caption d-none d-md-block">
-                                        <h5>{room?.image[0]?.title}</h5>
-                                        <p>{room?.image[0]?.info}</p>
+                                        <h5>{room?.image[3]?.title}</h5>
+                                        <p>{room?.image[3]?.info}</p>
                                     </div>
                         </div>
                     </div>
