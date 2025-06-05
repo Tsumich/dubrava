@@ -25,6 +25,9 @@
 
 .room-info-container{
     color: #000000;
+    display: flex;
+    width: fit-content !important;
+    margin: auto;
     margin-top: 80px;
     display: flex;
 }

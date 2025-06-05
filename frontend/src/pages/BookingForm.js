@@ -27,6 +27,7 @@ const BookingForm = () => {
     const serverMessage = useRef('')
     const [showMessage, setShowMessage] = useState(false)
     const [showErrorMessage, setShowErrMessage] = useState(false)
+        window.scrollTo(0, 0)
 
     useEffect(() => {
         if (booking){let temp = []

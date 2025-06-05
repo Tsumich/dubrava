@@ -50,12 +50,12 @@ const RoomPage =  () => {
                 
             <div className='room-page'>
                 <div className='room-page-line'></div>
-            
-            <div className='room-page-bg-image'>
-                <img src={`${URL}${room?.image[0]?.image}`}/>    
-            </div>
+        
 
             <div className='room-info-container'>
+                <div className='room-page-bg-image'>
+                    <img src={`${URL}${room?.image[0]?.image}`}/>    
+                </div>
                  
                 <div className='room-page-image-info'>
                     <img src={`${URL}${room?.image[0]?.image}`}/>
@@ -117,7 +117,7 @@ const RoomPage =  () => {
             </LazyImage>
 
             <div> 
-            <div style={{marginTop:'30px'}} className='benefits-list'> 
+            <div style={{marginTop:'50px'}} className='benefits-list'> 
                 {room.benefits.split(";").map((benefit) => {
                     return <div className='benefits'>{benefit}</div>
                 })}
