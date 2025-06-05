@@ -53,8 +53,8 @@ const MainPageServices = () => {
                                 }}>Подробнее
                             </button>
                         </div>
-                        <img className='services-image' src={gym}/>
                         <p className='title-image'>Спорт-зал</p>
+                        <img className='services-image' src={gym}/>
                     </div>
                 </div>
             </div>
