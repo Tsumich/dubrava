@@ -17,7 +17,8 @@ const uploadImage = async (image,) => {
     formData.append('oldName', image);
     uploadRoomImage(formData)
 }
-
+    const URL = 'https://dubrava789.onrender.com/'
+    //const URL = 'http://176.196.11.180:9000/'
 return (
     <div>
     {edit == 'image' ? 
@@ -25,7 +26,7 @@ return (
             <div>
                 <div className='admin-image-edit-wr'>
                     <div style={{display:'flex', alignItems:"center"}} className='admin-image-edit-wr-div'>
-                        <img className='admin-image-edit' src={`http://176.196.11.180:9000/${room?.image[0]?.image}`} style={{height:'200px'}}/>
+                        <img className='admin-image-edit' src={`${URL}${room?.image[0]?.image}`} style={{height:'200px'}}/>
                         <div className='infos-inputs'>  
                             <div>Заголовок</div>
                             <input 
@@ -54,7 +55,7 @@ return (
 
                 <div className='admin-image-edit-wr'>
                     <div style={{display:'flex', alignItems:"center"}} className='admin-image-edit-wr-div'>
-                        <img className='admin-image-edit' src={`http://176.196.11.180:9000/${room?.image[1]?.image}`} style={{height:'200px'}}/>
+                        <img className='admin-image-edit' src={`${URL}${room?.image[1]?.image}`} style={{height:'200px'}}/>
                         <div className='infos-inputs'>  
                             <div>Заголовок</div>
                             <input 
@@ -80,7 +81,7 @@ return (
 
                 <div className='admin-image-edit-wr'>
                     <div style={{display:'flex', alignItems:"center"}} className='admin-image-edit-wr-div'>
-                        <img className='admin-image-edit' src={`http://176.196.11.180:9000/${room?.image[2]?.image}`} style={{height:'200px'}}/>
+                        <img className='admin-image-edit' src={`${URL}${room?.image[2]?.image}`} style={{height:'200px'}}/>
                         <div className='infos-inputs'>  
                             <div>Заголовок</div>
                             <input 
@@ -106,7 +107,7 @@ return (
 
                 <div className='admin-image-edit-wr'>
                     <div style={{display:'flex', alignItems:"center"}} className='admin-image-edit-wr-div'>
-                        <img className='admin-image-edit' src={`http://176.196.11.180:9000/${room?.image[3]?.image}`} style={{height:'200px'}}/>
+                        <img className='admin-image-edit' src={`${URL}${room?.image[3]?.image}`} style={{height:'200px'}}/>
                         <div className='infos-inputs'>  
                             <div>Заголовок</div>
                             <input 
