@@ -139,7 +139,7 @@ console.log(loadedAuth)
             
             
         </Routes>
-       
+        <Footer/>
         </BrowserRouter>
     </PrimeReactProvider>
   )
