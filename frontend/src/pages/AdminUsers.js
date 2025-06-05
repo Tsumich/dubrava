@@ -22,7 +22,7 @@ const AdminUsers = () => {
             <Sidebar/>
             <CreateUser show={createUser} onHide={() => setCreateUser(false)}></CreateUser>
         
-            <div className='admin-tables'>
+            <div className='admin-tables' style={{height:'50vh'}}>
                 <div style={{paddingLeft: '30px', paddingTop:'20px'}}>
                     <h1 className='admin-table-title'>Пользователи </h1>
                     <Button className='booking-admin-create' onClick={() => setCreateUser(true)}>Создать пользователя</Button>    

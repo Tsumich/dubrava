@@ -17,7 +17,7 @@ class ActionProvider {
 
   map = () => {
     const message = this.createChatBotMessage(
-      "Наш адрес: г. Кемерово Центральная ул., 1Г, д. Ляпки"
+      "Наш адрес: г.Бирюзовск, ул. Янтарный Овраг, д. 5"
     );
 
     this.updateChatbotState(message);

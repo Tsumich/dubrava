@@ -37,7 +37,7 @@ const Booking =  ({showingEnd}) => {
 
     return (
     <div className='admin-tables'>
-       <div className='container mt-5'>
+       <div className='container mt-5' style={{height:'50vh'}}>
         <h1 className='admin-table-title'>{showingEnd ? 'Проживание подходит к концу' : 'Бронирование домов'} </h1>
         <div> {!showingEnd ? <Button className='booking-admin-create' onClick={() => setCreateBooking(true)}>Создать бронь</Button> : <></>} </div>
            { currentBooking.length > 0 ?

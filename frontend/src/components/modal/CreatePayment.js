@@ -34,6 +34,7 @@ const CreatePayment = ({show, onHide, booking, showInfo, onCreate, isRequest}) =
                     </div>
                     <div style={{margin:'auto'}}>
                         <div>Имя клиента: {booking.lastName} {booking.name}</div>
+                        <div>Номер телефона: {booking.phoneNumber}</div>
                         <div>Сумма к оплате: {booking.price}</div>
                     </div>
                     </div>

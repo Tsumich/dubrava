@@ -42,7 +42,7 @@ return (
                         </div> 
                     </div>
                     <div>
-                       <label for="avatar">Главное фото</label>
+                       <label for="avatar">Фото №1</label>
                         <input type="file" 
                             id="avatar" 
                             onChange={(e) => setFile(e.target.files[0])}
@@ -73,10 +73,12 @@ return (
                     <div>
                        <label for="avatar">Фото №2</label>
                         <input type="file" 
+                            onChange={(e) => setFile(e.target.files[0])}
                             id="avatar" 
                             name="avatar" 
                             accept="image/png, image/jpeg" /> 
                     </div>
+                    {file ? <button className='admin-room-action' onClick={() => uploadImage(room.image[1].image)}>Сохранить фото</button> : <></>}
                 </div>
 
                 <div className='admin-image-edit-wr'>
@@ -100,8 +102,11 @@ return (
                        <label for="avatar">Фото №3</label>
                         <input type="file" 
                             id="avatar" 
+                            onChange={(e) => setFile(e.target.files[0])}
                             name="avatar" 
                             accept="image/png, image/jpeg" /> 
+                        {file ? <button className='admin-room-action' onClick={() => uploadImage(room.image[2].image)}>Сохранить фото</button> : <></>}
+
                     </div>
                 </div>
 
@@ -119,7 +124,6 @@ return (
                                 onChange={(e) => setPrice(e.target.value)}
                                 placeholder={room.image[3].info}
                             />
-                            <button className='admin-room-action' onClick={() => saveInfosChanges(room.image[3])}>Изменить</button>
                         </div> 
                     </div>
                     <div>
@@ -127,8 +131,11 @@ return (
                         <input type="file" 
                             id="avatar" 
                             name="avatar" 
+                            onChange={(e) => setFile(e.target.files[0])}
                             accept="image/png, image/jpeg" /> 
                     </div>
+                    {file ? <button className='admin-room-action' onClick={() => uploadImage(room.image[2].image)}>Сохранить фото</button> : <></>}
+
                 </div>
 
             </div>

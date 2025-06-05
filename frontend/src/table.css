@@ -67,16 +67,22 @@
 
 .previous-btn{
      width: 100px;
-     background-color: #756e8000  !important;
+     background-color: #e2ddddd2  !important;
      border: none  !important;
 }
 
 .next-btn{
     float: right;
     border: none  !important;
+    background-color: #e2ddddd2  !important;
     width: 100px;
-    background-color: #756e8000 !important;
+ }
+
+.next-btn:hover{
+    background-color: #bab7be !important;
 }
 
-
+.previous-btn:hover{
+    background-color: #bab7be !important;
+}
 
