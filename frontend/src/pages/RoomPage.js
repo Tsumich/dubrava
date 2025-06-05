@@ -58,7 +58,7 @@ const RoomPage =  () => {
             <div className='room-info-container'>
                  
                 <div className='room-page-image-info'>
-                    <img src={`${URL}${room?.image[1]?.image}`}/>
+                    <img src={`${URL}${room?.image[0]?.image}`}/>
                 </div>
 
                 <div className='room-page-info' style={{marginBottom:'20px'}}>
