@@ -14,6 +14,7 @@ import { useLayoutEffect } from 'react';
 const Searching = () => {
     const [checkIn, setCheckIn] = useState(new Date())
     let temp = new Date()
+    const isLoading = useRef(false)
     const dispatch = useDispatch()
     temp.setDate(checkIn.getDate() + 1)
     const [checkOut, setCheckOut] = useState(temp)
@@ -21,7 +22,7 @@ const Searching = () => {
     const {rooms} = useSelector(state => state.rooms)
     const [vacancies, setVacancies] = useState()
     const [showCalendar, setShowCalendar] = useState(false)
-console.log(rooms.status) 
+
     useLayoutEffect(() => {
         window.scrollTo(0, 0);
     }, [ ]);
@@ -32,6 +33,7 @@ console.log(rooms.status)
     }
 
     const submitSearch = () => {
+        isLoading.current = true
         if(checkIn > checkOut) return
         if(!checkIn || !checkOut) return 
         const roomsId = []
@@ -74,8 +76,13 @@ console.log(rooms.status)
                 
             })
             temp.length == 0? setShowCalendar(true) : setShowCalendar(false)
-            setVacancies(temp) 
-        })
+            function endLoading() {
+                setVacancies(temp) 
+                isLoading.current = false
+            }
+
+            setTimeout(endLoading, 1000);
+            })
     }
 
     return (
@@ -143,7 +150,7 @@ console.log(rooms.status)
               
                 <Button className='search-button' type='submit' onClick={submitSearch}>Поиск</Button>
             </div>
-            {rooms?.status == 'loading' ?  
+            {rooms?.status == 'loading' || isLoading.current == true ?  
                 <div className='rooms'><Rooms showSkelet={true} rooms={rooms}/></div>:
             <div className='rooms'>
                 { !showCalendar ? 

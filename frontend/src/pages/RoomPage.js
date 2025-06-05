@@ -126,7 +126,7 @@ const RoomPage =  () => {
                 <div className='button-go-booking' style={{textAlign:'center'}}>
                     {booking ?
                     <button  className='go-booking' onClick={() => navigate(`/room/${room.id}/booking`)} style={{margin:'auto'}}>
-                        Перейти к бронированию</button>
+                        Забронировать</button>
                         :
                     <button className='go-booking' onClick={() => navigate(-1)} style={{margin:'auto'}}>
                         Выбрать дом</button>}
