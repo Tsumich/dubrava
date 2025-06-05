@@ -41,8 +41,9 @@ const App = () => {
   const {rooms} = useSelector(state => state.rooms)
   const auth = useSelector(state => state.auth)
 
- 	React.useEffect(() => {
+  React.useEffect(() => {
 		dispatch(fetchAuthMe())
+    
 	}, [])
 	
   const isRoomLoading = rooms.status === 'loading'
@@ -51,8 +52,10 @@ const App = () => {
 			dispatch(fetchRooms())
 	}, [])
 
-  const isAuth = useSelector(isAuthSelector)
 
+  const isAuth =  useSelector(isAuthSelector);
+  const loadedAuth = useSelector(state => state.auth.status)
+console.log(loadedAuth)
   const adminRoutes = [
     {
       path: '/admin/bookings',
@@ -108,6 +111,8 @@ const App = () => {
         <BrowserRouter>
         <Header/>
         <Routes>
+            {loadedAuth == 'error' || loadedAuth == 'loaded' ?
+            <>
             {routes.map(({path, Component}) =>
               <Route path={path} element={<Component/>} key={path} exact/>
             )},
@@ -115,11 +120,13 @@ const App = () => {
             {isAuth ? adminRoutes.map(({path, Component}) =>
               <Route path={path} element={<Component/>} key={path} exact/>
             ) : <></> },
-
+            
             <Route
               path="*"
-              element={<Navigate to="/" replace />}
+              element={<Navigate to="/" replace />} 
             />
+            </> : <></>
+          }
             
             
         </Routes>

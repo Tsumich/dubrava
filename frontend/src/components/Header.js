@@ -9,7 +9,6 @@ const Header = () => {
     const dispatch = useDispatch()
 	const isAuth = useSelector(isAuthSelector)
         const aaa = useSelector(state => state.auth.data)
-    console.log(aaa)
  	const onClickLogout = () => {
 		if(window.confirm('Выйти?')){
 			dispatch(logout())
