@@ -29,7 +29,6 @@
     width: fit-content !important;
     margin: auto;
     margin-top: 80px;
-    display: flex;
 }
 
 .room-page-info-bg{
@@ -46,7 +45,7 @@
     height: 450px;
     filter: grayscale(100%);
     filter: blur(2px);
-    margin-left: 80px;
+    margin-left: 10px;
     opacity: 50%;
     position: absolute;
     top: 110px;
@@ -290,7 +289,9 @@
   }
 
   .benefits-list{
-   text-align: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
   }
 
   .footer{
