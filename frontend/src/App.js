@@ -125,12 +125,21 @@ console.log(loadedAuth)
               path="*"
               element={<Navigate to="/" replace />} 
             />
-            </> : <></>
+            </> : <>
+            {routes.map(({path, Component}) =>
+              <Route path={path} element={<Component/>} key={path} exact/>
+            )}
+            
+            <Route
+              path="*"
+              element={<Navigate to="/" replace />} 
+            />
+            </>
           }
             
             
         </Routes>
-        <Footer/>
+       
         </BrowserRouter>
     </PrimeReactProvider>
   )
